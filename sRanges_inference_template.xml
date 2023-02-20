@@ -1,0 +1,242 @@
+<beast version='2.0'
+       namespace='beast.pkgmgmt
+       :beast.base.core
+       :beast.base.inference
+       :beast.base.evolution.tree.coalescent
+       :beast.base.evolution.sitemodel
+       :beast.pkgmgmt
+       :beast.base.core
+       :beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood:beast.base.evolution.alignment
+       :sr.evolution.operators
+       :sa.evolution.operators
+       :sr.evolution.tree
+       :sr.evolution.sranges
+       :sr.speciation'>
+
+
+<!--    &lt;!&ndash; The true tree down which sequences are simulated. &ndash;&gt;-->
+<!--    <tree spec="beast.base.evolution.tree.TreeParser"-->
+<!--          id='start_tree'-->
+<!--          insertNewick-->
+<!--          IsLabelledNewick="true"-->
+<!--          adjustTipHeights='false'/>-->
+
+<!--    &lt;!&ndash; The simulated sequence alignment. &ndash;&gt;-->
+<!--    <data spec='beastfx.app.seqgen.SimulatedAlignment' id="alignment"-->
+<!--          sequencelength="2000"-->
+<!--          outputFileName="simulated_dna_alignment.xml">-->
+
+<!--        &lt;!&ndash; The true tree down which sequences are simulated. &ndash;&gt;-->
+<!--        <tree idref="start_tree"/>-->
+
+<!--        <data spec='Alignment' id="input_alignment" dataType="nucleotide">-->
+<!--            <insertSequence/>-->
+<!--        </data>-->
+
+
+<!--    </data>-->
+
+
+<!--    &lt;!&ndash; The simulated morphological alignment. &ndash;&gt;-->
+<!--    <data spec='beastfx.app.seqgen.SimulatedAlignment' id="morph"-->
+<!--          sequencelength="300"-->
+<!--          outputFileName="simulated_morph_alignment.xml">-->
+
+<!--        &lt;!&ndash; The true tree down which sequences are simulated. &ndash;&gt;-->
+<!--        <tree idref="start_tree"/>-->
+
+<!--        <data spec='Alignment' id="input_morph" dataType="standard">-->
+<!--            <insertMorphSequence/>-->
+<!--            <userDataType id="morphDataType" spec="beast.base.evolution.datatype.StandardData" nrOfStates="7"/>-->
+<!--        </data>-->
+
+
+<!--    </data>-->
+
+    <insertStartMorphData/>
+    <siteModel id="morphSiteModel" spec="SiteModel" gammaCategoryCount="1">
+        <parameter id="mutationRate" estimate="false" name="mutationRate">1.0</parameter>
+        <substModel id="LewisMK" spec="morphmodels.evolution.substitutionmodel.LewisMK" datatype="@morphDataType"/>
+    </siteModel>
+
+    <branchRateModel id="StrictClock_morph" spec="beast.base.evolution.branchratemodel.StrictClockModel">
+        <parameter dimension="1" estimate="false" id="clockRate_morph" minordimension="1" name="clock.rate" value="1.0"/>
+    </branchRateModel>
+
+
+
+    <insertStartDNAData/>
+    <siteModel spec='SiteModel' id="siteModel_dna" gammaCategoryCount='1'>
+        <substModel spec='JukesCantor' id='JC69'/>
+    </siteModel>
+
+    <branchRateModel id="StrictClock_dna" spec="beast.base.evolution.branchratemodel.StrictClockModel">
+        <parameter dimension="1" estimate="false" id="clockRate_dna" minordimension="1" name="clock.rate" value="1.0"/>
+    </branchRateModel>
+
+
+
+
+
+
+
+
+<!--    <run spec="beastfx.app.seqgen.SequenceSimulator" id="seqgen2" data='@morph' tree='@tree'-->
+<!--         sequencelength='100' outputFileName="simulated_alignment.xml">-->
+<!--&lt;!&ndash;        <siteModel spec='SiteModel' id="siteModel" gammaCategoryCount='1'>&ndash;&gt;-->
+<!--&lt;!&ndash;            <substModel spec='JukesCantor' id='JC69'/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <substModel spec='HKY' id='hky'>&ndash;&gt;-->
+<!--&lt;!&ndash;                <parameter name='kappa' id="hky.kappa" value="5.0" lower="0.0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <frequencies id='freqs' spec='Frequencies'>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <data idref='alignment'/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </frequencies>&ndash;&gt;-->
+<!--&lt;!&ndash;            </substModel>&ndash;&gt;-->
+<!--&lt;!&ndash;        </siteModel>&ndash;&gt;-->
+
+<!--        <siteModel id="morphSiteModel" spec="SiteModel" gammaCategoryCount="1">-->
+<!--            <parameter id="mutationRate" estimate="false" name="mutationRate">1.0</parameter>-->
+<!--            <substModel id="LewisMK" spec="morphmodels.evolution.substitutionmodel.LewisMK" datatype="@morphDataType"/>-->
+<!--        </siteModel>-->
+
+<!--        <branchRateModel id="StrictClock" spec="beast.base.evolution.branchratemodel.StrictClockModel">-->
+<!--            <parameter dimension="1" estimate="false" id="clockRate" minordimension="1" name="clock.rate" value="1.0"/>-->
+<!--        </branchRateModel>-->
+<!--    </run>-->
+    <map name="Uniform">beast.base.inference.distribution.Uniform</map>
+    <map name="Exponential">beast.base.inference.distribution.Exponential</map>
+    <map name="LogNormal">beast.base.inference.distribution.LogNormalDistributionModel</map>
+    <map name="Normal">beast.base.inference.distribution.Normal</map>
+    <map name="Beta">beast.base.inference.distribution.Beta</map>
+    <map name="Gamma">beast.base.inference.distribution.Gamma</map>
+    <map name="LaplaceDistribution">beast.base.inference.distribution.LaplaceDistribution</map>
+    <map name="prior">beast.base.inference.distribution.Prior</map>
+    <map name="InverseGamma">beast.base.inference.distribution.InverseGamma</map>
+    <map name="OneOnX">beast.base.inference.distribution.OneOnX</map>
+
+
+    <run spec="MCMC" id="mcmc" chainLength="1000000">
+
+        <state id="state" storeEvery="100">
+            <tree id="tree" spec="sr.evolution.tree.SRTree" nodetype="sr.evolution.tree.SRNode" name="stateNode">
+                <trait id="dateTrait.t:tree" spec="beast.base.evolution.tree.TraitSet" traitname="date-backward">
+                    <taxa spec="TaxonSet" id="taxonSet">
+                        <inputTaxa/>
+<!--                        <taxon spec="Taxon" id="t3"/>-->
+<!--                        <taxon spec="Taxon" id="t2"/>-->
+<!--                        <taxon spec="Taxon" id="t1"/>-->
+                    </taxa>
+                    <inputTaxaAge/>
+<!--                    t3=0., t2=1., t1=3.-->
+                </trait>
+                <taxonset idref="taxonSet" />
+                <inputStratRanges/>
+<!--                <stratigraphicRange id="r1" spec="StratigraphicRange" firstOccurrence="@t1" lastOccurrence="@t2"/>-->
+<!--                &lt;!&ndash;                <stratigraphicRange id="r2" spec="StratigraphicRange" firstOccurrence="@t2" lastOccurrence="@t2"/>&ndash;&gt;-->
+<!--                <stratigraphicRange id="r3" spec="StratigraphicRange" firstOccurrence="@t3" lastOccurrence="@t3"/>-->
+            </tree>
+            <initOrigin/>
+            <initBirthRate/>
+            <initDeathRate/>
+            <initSamplingRate/>
+            <initSamplingAtPresentProb/>
+<!--            <parameter id="origin" lower="0.0" name="stateNode">10.0</parameter>-->
+<!--            <parameter id="r" lower="0.0" name="stateNode" upper="1.0">0.5</parameter>-->
+        </state>
+
+        <init estimate="false" id="Randomtree" initial="@tree" spec="RandomSRangeTree" nodetype="sr.evolution.tree.SRNode" taxonset="@taxonSet">
+            <populationModel id="ConstantPopulation0.t" spec="ConstantPopulation">
+                <parameter id="randomPopSize.t" name="popSize">1.0</parameter>
+            </populationModel>
+            <inputStratRangesRef/>
+<!--            <stratigraphicRange idref="r1"/>-->
+            <!--            <stratigraphicRange idref="r2"/>-->
+<!--            <stratigraphicRange idref="r3"/>-->
+        </init>
+
+        <distribution id="posterior" spec="CompoundDistribution">
+            <distribution id="prior" spec="CompoundDistribution">
+                <distribution spec="SRangesBirthDeathModel" id="birthDeath" tree="@tree"  conditionOnSampling="true" removalProbability="0.0">
+                    <origin idref="origin"/>
+                    <birthRate idref="birthRate"/>
+                    <deathRate idref="deathRate"/>
+                    <samplingRate idref="samplingRate"/>
+                    <rho idref="samplingAtPresentProb"/>
+
+<!--                    <parameter estimate="false" id="birthRate.t:Species" lower="0.0" name="birthRate">2.0</parameter>-->
+<!--                    <parameter estimate="false" id="deathRate.t:Species" lower="0.0" name="deathRate" upper="1.0">1.0</parameter>-->
+<!--                    <parameter estimate="false" id="samplingRate.t:Species" lower="0.0" name="samplingRate" upper="1.0">0.5</parameter>-->
+<!--                    <parameter id="rhoFBD.t:Species" lower="0.0" name="rho" upper="1.0">0.5</parameter>-->
+                </distribution>
+                <prior id="originPrior" name="distribution" x="@origin">
+<!--                    <insertOriginPrior/>-->
+                    <Uniform id="Uniform.1" name="distr" upper="200"/>
+                </prior>
+                <prior id="birthRatePrior" name="distribution" x="@birthRate">
+<!--                    <insertBirthRatePrior/>-->
+                    <Uniform id="Uniform.2" name="distr" upper="Infinity"/>
+                </prior>
+                <prior id="deathRatePrior" name="distribution" x="@deathRate">
+<!--                    <insertDeathRatePrior/>-->
+                    <Uniform id="Uniform.3" name="distr" upper="Infinity"/>
+                </prior>
+                <prior id="samplingRatePrior" name="distribution" x="@samplingRate">
+<!--                    <insertSamplingAtPresentProbPrior/>-->
+                    <Uniform id="Uniform.4" name="distr" upper="Infinity"/>
+                </prior>
+                <prior id="samplingAtPresentProbPrior" name="distribution" x="@samplingAtPresentProb">
+<!--                    <insertSamplingAtPresentProbPrior/>-->
+                    <Uniform id="Uniform.5" name="distr"/>
+                </prior>
+
+            </distribution>
+
+            <distribution id="dnaTreeLikelihood" spec="TreeLikelihood" useAmbiguities="true" tree="@tree">
+                <data idref="dna_alignment"/>
+                <siteModel idref="siteModel_dna"/>
+                <branchRateModel idref="StrictClock_dna"/>
+            </distribution>
+
+            <distribution id="morphTreeLikelihood" spec="TreeLikelihood" useAmbiguities="true" tree="@tree">
+                <data idref="morph_alignment"/>
+                <siteModel idref="morphSiteModel"/>
+                <branchRateModel idref="StrictClock_morph"/>
+            </distribution>
+        </distribution>
+
+
+<!--        Parameter operators -->
+        <operator id="originScaler" parameter="@origin" scaleFactor="0.75" spec="ScaleOperator" weight="1.0"/>
+        <operator id='birthRateOperator' spec='ScaleOperator' scaleFactor=".75" weight="5" parameter="@birthRate"/>
+        <operator id='deathRateOperator' spec='ScaleOperator' scaleFactor=".75" weight="5" parameter="@deathRate"/>
+        <operator id='samplingRateOperator' spec='ScaleOperator' scaleFactor=".75" weight="5" parameter="@samplingRate"/>
+        <operator id='samplingAtPresentProbOperator' spec='ScaleOperator' scaleFactor=".75" weight="5" parameter="@samplingAtPresentProb"/>
+
+<!--        Tree operators -->
+        <operator id="SATreeRootScaler" rootOnly="true" scaleFactor="0.95" spec="SAScaleOperator" tree="@tree" weight="3.0" />
+        <operator id="SRWilsonBalding" spec='SRWilsonBalding' weight="20" tree="@tree"/>
+        <operator id="LeftRightChildSwap" spec='LeftRightChildSwap' weight="5" tree="@tree"/>
+        <operator id="LeafToSampledAncestorJump" spec='SRLeafToSampledAncestorJump' weight="20" tree="@tree" />
+        <operator spec="SAUniform" weight="20" tree="@tree"/>
+        <operator id='treeScaler' spec="SAScaleOperator" scaleFactor=".95" weight="10.0" tree="@tree"/>
+
+
+        <logger logEvery="10000" fileName="test.$(seed).log">
+            <model idref='posterior'/>
+            <log idref="dnaTreeLikelihood"/>
+            <log idref="morphTreeLikelihood"/>
+            <!--parameter idref="treeModel.rootHeight"/-->
+            <log idref="origin"/>
+            <log idref="birthRate"/>
+            <log idref="deathRate"/>
+            <log idref="samplingRate"/>
+            <log idref="samplingAtPresentProb"/>
+            <log idref="posterior"/>
+        </logger>
+        <logger logEvery="10000" fileName="test.$(seed).trees">
+            <log idref="tree"/>
+        </logger>
+    </run>
+        
+        
+        </beast>
