@@ -1,0 +1,115 @@
+<beast version='2.0'
+       namespace='beast.pkgmgmt
+       :beast.base.core
+       :beast.base.inference
+       :beast.base.evolution.tree.coalescent
+       :beast.base.evolution.sitemodel
+       :beast.pkgmgmt
+       :beast.base.core
+       :beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood:beast.base.evolution.alignment
+       :sr.evolution.operators
+       :sa.evolution.operators
+       :sr.evolution.tree
+       :sr.evolution.sranges
+       :sr.speciation'>
+
+
+
+<!--    &lt;!&ndash; The simulated morphological alignment. &ndash;&gt;-->
+<!--    <data spec='beastfx.app.seqgen.SimulatedAlignment' id="morph"-->
+<!--          sequencelength="300"-->
+<!--          outputFileName="simulated_morph_alignment.xml">-->
+
+<!--        &lt;!&ndash; The true tree down which sequences are simulated. &ndash;&gt;-->
+<!--        <tree idref="start_tree"/>-->
+
+<!--        <data spec='Alignment' id="input_morph" dataType="standard">-->
+<!--            <sequence spec='Sequence' taxon='t12_first' value='?'/>
+			<sequence spec='Sequence' taxon='t7_first' value='?'/>
+			<sequence spec='Sequence' taxon='t29_first' value='?'/>
+			<sequence spec='Sequence' taxon='t19_first' value='?'/>
+			<sequence spec='Sequence' taxon='t19_last' value='?'/>
+			<sequence spec='Sequence' taxon='t16_first' value='?'/>
+			<sequence spec='Sequence' taxon='t16_last' value='?'/>
+			<sequence spec='Sequence' taxon='t4_first' value='?'/>
+			<sequence spec='Sequence' taxon='t6_first' value='?'/>
+			<sequence spec='Sequence' taxon='t21_first' value='?'/>
+			<sequence spec='Sequence' taxon='t27_first' value='?'/>
+			<sequence spec='Sequence' taxon='t27_last' value='?'/>
+			<sequence spec='Sequence' taxon='t14_first' value='?'/>
+			<sequence spec='Sequence' taxon='t1_first' value='?'/>
+			<sequence spec='Sequence' taxon='t1_last' value='?'/>
+			<sequence spec='Sequence' taxon='t20_first' value='?'/>
+			<sequence spec='Sequence' taxon='t23_first' value='?'/>
+			<sequence spec='Sequence' taxon='t10_first' value='?'/>
+			<sequence spec='Sequence' taxon='t3_first' value='?'/>
+			<sequence spec='Sequence' taxon='t3_last' value='?'/>-->
+<!--            <userDataType id="morphDataType" spec="beast.base.evolution.datatype.StandardData" nrOfStates="7"/>-->
+<!--        </data>-->
+
+<!--        <siteModel id="morphSiteModel" spec="SiteModel" gammaCategoryCount="1">-->
+<!--            <parameter id="mutationRate" estimate="false" name="mutationRate">1.0</parameter>-->
+<!--            <substModel id="LewisMK" spec="morphmodels.evolution.substitutionmodel.LewisMK" datatype="@morphDataType"/>-->
+<!--        </siteModel>-->
+
+<!--        <branchRateModel id="StrictClock_morph" spec="beast.base.evolution.branchratemodel.StrictClockModel">-->
+<!--            <parameter dimension="1" estimate="false" id="clockRate_morph" minordimension="1" name="clock.rate" value="1.0"/>-->
+<!--        </branchRateModel>-->
+<!--    </data>-->
+
+    <map name="Uniform">beast.base.inference.distribution.Uniform</map>
+    <map name="Exponential">beast.base.inference.distribution.Exponential</map>
+    <map name="LogNormal">beast.base.inference.distribution.LogNormalDistributionModel</map>
+    <map name="Normal">beast.base.inference.distribution.Normal</map>
+    <map name="Beta">beast.base.inference.distribution.Beta</map>
+    <map name="Gamma">beast.base.inference.distribution.Gamma</map>
+    <map name="LaplaceDistribution">beast.base.inference.distribution.LaplaceDistribution</map>
+    <map name="prior">beast.base.inference.distribution.Prior</map>
+    <map name="InverseGamma">beast.base.inference.distribution.InverseGamma</map>
+    <map name="OneOnX">beast.base.inference.distribution.OneOnX</map>
+
+
+    <run spec="beastfx.app.seqgen.SequenceSimulator" id="seqgen" sequencelength='200' outputFileName="simulated_morph_alignment.xml">
+
+        <!-- The true tree down which sequences are simulated. -->
+        <tree spec="beast.base.evolution.tree.TreeParser"
+              id='start_tree'
+              newick='(((((((((((((t12_first:1.613820048932624,t7_first:1.613820048932624):7.401150758923102,t29_first:1.466180348441432):3.533522082001483,(t19_last:11.09819300055703,t19_first:0):1.450299889300174):2.369346496243635,t16_last:0):1.047887089680438,t4_first:1.943059832789789):6.528595623820657,t6_first:2.034324057069174):2.809003405391799,t21_first:4.568146400872461):4.804142312009255,((t27_last:8.29851732217163,t14_first:1.504727283785641):5.039546700277004,t27_first:0):0.05829270632661476):3.071535268384245,(((t1_last:0.9926433650688118,t1_first:0):1.264273147402569,t20_first:0.4239418572316858):0.7567569089756319,t23_first:1.847385666367838):0.6655871003473095):4.73769629095117,t16_first:0):9.060114435612675,t10_first:0.7753603862214007):9.348937019563163,t3_last:0):5.343951745728567,t3_first:0):4.050993146535205;'
+              IsLabelledNewick="true"
+              adjustTipHeights='false'/>
+
+        <data spec='Alignment' id="input_morph" dataType="standard">
+            <sequence spec='Sequence' taxon='t12_first' value='?'/>
+			<sequence spec='Sequence' taxon='t7_first' value='?'/>
+			<sequence spec='Sequence' taxon='t29_first' value='?'/>
+			<sequence spec='Sequence' taxon='t19_first' value='?'/>
+			<sequence spec='Sequence' taxon='t19_last' value='?'/>
+			<sequence spec='Sequence' taxon='t16_first' value='?'/>
+			<sequence spec='Sequence' taxon='t16_last' value='?'/>
+			<sequence spec='Sequence' taxon='t4_first' value='?'/>
+			<sequence spec='Sequence' taxon='t6_first' value='?'/>
+			<sequence spec='Sequence' taxon='t21_first' value='?'/>
+			<sequence spec='Sequence' taxon='t27_first' value='?'/>
+			<sequence spec='Sequence' taxon='t27_last' value='?'/>
+			<sequence spec='Sequence' taxon='t14_first' value='?'/>
+			<sequence spec='Sequence' taxon='t1_first' value='?'/>
+			<sequence spec='Sequence' taxon='t1_last' value='?'/>
+			<sequence spec='Sequence' taxon='t20_first' value='?'/>
+			<sequence spec='Sequence' taxon='t23_first' value='?'/>
+			<sequence spec='Sequence' taxon='t10_first' value='?'/>
+			<sequence spec='Sequence' taxon='t3_first' value='?'/>
+			<sequence spec='Sequence' taxon='t3_last' value='?'/>
+            <userDataType id="morphDataType" spec="beast.base.evolution.datatype.StandardData" nrOfStates="7"/>
+        </data>
+
+        <siteModel id="morphSiteModel" spec="SiteModel" gammaCategoryCount="1">
+            <substModel id="LewisMK" spec="morphmodels.evolution.substitutionmodel.LewisMK" datatype="@morphDataType"/>
+        </siteModel>
+
+        <branchRateModel id="StrictClock_morph" spec="beast.base.evolution.branchratemodel.StrictClockModel">
+            <parameter dimension="1" estimate="false" id="clockRate_morph" minordimension="1" name="clock.rate" value="0.001"/>
+        </branchRateModel>
+    </run>
+        
+        
+</beast>

@@ -1,0 +1,262 @@
+<beast version='2.0'
+       namespace='beast.pkgmgmt
+       :beast.base.core
+       :beast.base.inference
+       :beast.base.evolution.tree.coalescent
+       :beast.base.evolution.sitemodel
+       :beast.base.evolution.tree
+       :beast.pkgmgmt
+       :beast.base.core
+       :beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood:beast.base.evolution.alignment
+       :sr.evolution.operators
+       :sa.evolution.operators
+       :sr.evolution.tree
+       :sr.evolution.sranges
+       :sr.speciation'>
+
+    <data id='morph_alignment' spec='beast.base.evolution.alignment.Alignment'>
+    <sequence id='morph' spec='beast.base.evolution.alignment.Sequence' taxon='t2_last' value='00241666422402013160615521244103132600511111220366033642166553206502031254355450615664560334363236413436252112600323130154331624661210653151026233006520213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph1' spec='beast.base.evolution.alignment.Sequence' taxon='t10_last' value='00241666422402013160615521244103132600511111220366033642166553206502031254355450615564560334363236413436252112600323130154331624661210653151026233006520213351014333615060341406200130204413052550161332'/>
+
+    <sequence id='morph2' spec='beast.base.evolution.alignment.Sequence' taxon='t10_first' value='00241666422402013160615521244103132600511111220366033642166553206502031254355450615664560334363236413436252112600323130154331624661210653151026233006520213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph3' spec='beast.base.evolution.alignment.Sequence' taxon='t7_last' value='00241666422402013160615521244103132600511111220366033642166553206502031254355450615664560334363236413436252112600323130154331624661210653151026233036120213351014333611060301406200130204413052550161332'/>
+
+    <sequence id='morph4' spec='beast.base.evolution.alignment.Sequence' taxon='t7_first' value='00241666422402013160615521244103132600511111220366033642166553206502031254355450615664560334363236413436252112600323130154331624661210653151026233036120213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph5' spec='beast.base.evolution.alignment.Sequence' taxon='t5_first' value='00241666422402013160615521244103132650511111220366033642166553206502031254355450615664560534363236413436252112600323130154331624661210653151026233136120213351014333615060301406200130204413052350161332'/>
+
+    <sequence id='morph6' spec='beast.base.evolution.alignment.Sequence' taxon='t8_last' value='00241666422402013160615521244103132600511111220362033642166553206502031254355450615664560234363236413436252112600320130154331624661210653151026233036120213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph7' spec='beast.base.evolution.alignment.Sequence' taxon='t3_first' value='00241666422402013160615521244103132600511111220362033642166553206502031254355450615664560234363236413436252112600320130114331624661210653151026233036120213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph8' spec='beast.base.evolution.alignment.Sequence' taxon='t4_first' value='00241666422402013160615521244103132600511111220362033642166553206502031254355450615664560234363236413436252112600320130114333624661210653151026233036120213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph9' spec='beast.base.evolution.alignment.Sequence' taxon='t6_first' value='00241666422402013160615521244103132600511111220362033642166553206502031254355450615664560234363236413436232112605320130114331624661210653151026233036120213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph10' spec='beast.base.evolution.alignment.Sequence' taxon='t9_last' value='00241666422402013160615521244103132600511111220362033642166553206502031254355450615664560234363236413436252112600320130114331624665210653151026233036120213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph11' spec='beast.base.evolution.alignment.Sequence' taxon='t9_first' value='00241666422402013160615521244103132600511111220362033642166553206502031254355450615664560234363236413436252112600320130114331624665210653151026233036120213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph12' spec='beast.base.evolution.alignment.Sequence' taxon='t8_first' value='00241666422402013160615521244103132600511111220362033642166553206502031254355450615664560334363236413436252112600320130154331624661210653151026233036120213351014333615060301406200130204413052550161332'/>
+
+    <sequence id='morph13' spec='beast.base.evolution.alignment.Sequence' taxon='t2_first' value='00241666422502616160615521244103132600511111220366033642166553206502031254355450615664560334363036413436252112600623130154340604661210653151026233036125213351064343650060301406200130204413052550161332'/>
+
+    <input id='morphDataType' spec='beast.base.evolution.datatype.StandardData' name='userDataType' nrOfStates='7'/>
+
+</data>
+
+
+    <siteModel id="morphSiteModel" spec="SiteModel" gammaCategoryCount="1">
+        <substModel id="LewisMK" spec="morphmodels.evolution.substitutionmodel.LewisMK" datatype="@morphDataType"/>
+    </siteModel>
+
+    <branchRateModel id="StrictClock_morph" spec="beast.base.evolution.branchratemodel.StrictClockModel">
+        <parameter dimension="1" estimate="false" id="clockRate_morph" minordimension="1" name="clock.rate" value="0.001"/>
+    </branchRateModel>
+
+
+
+    <data id='dna_alignment' spec='beast.base.evolution.alignment.Alignment'>
+    <sequence spec='beast.base.evolution.alignment.Sequence' taxon='t2_last' value='----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'/>
+
+    <sequence id='dna1' spec='beast.base.evolution.alignment.Sequence' taxon='t10_last' value='GACGGTTGCCCCAATCCTGTACACAATCCCTAATGAGACGTCGATTCTGGTCTGTAATCGGGACCACACAAAAAGAGGCCCACTTCGCGCGACCTCGGCCGCACTTCGCTGGTACCGGCTTCTAGTGCTATCCACGTTCATCGGGTTTTCCATTTCTCTGCGTTCCCCGTGACTACACCAGCGGGCCCGTGGAGACTGGCGGCCCTGCCAATGTGCTGCTCCTCACCTGTTGGCAAGGCCTCGAGAGAGGGTCTTGGGCTGTGGAACCCACCAAGTCTTTAATGCTTGACCACACTTATTCTTCCCATTTCAAAAGCCAATCCGGTGATGAACCACGTTTCCTAGGTGCCGCTATTGACTACATATATCGGTAATCGCCTGTAGCTTGTGCCTACTTTGGTCGTAGTAATAAACTGCTAGCGCGTAAAAGTACCCTCGTACTAACCTGGCTTATTTTGTTGGAATAGCCTATGGAAGGATAACAATAAAGAACGAACGATATGGAGTCAATACTACAGGATACATTCAGTCAGGGCTTTACACCCTGTGGGGTGAGGCCCTATTAGCTCTTTTTTGTTTTTTGAAAATAATTACTAGTCGTTAGTGCGCGCGATACTGCTGGGTAAGGTTCAAAATTCTTTACAGTACGTGGGCGGTGAAAAATTGGTACCTATTAGACGCAGCGATTCCCTCGGTGGAAACGGCCGAAGCCAATCCGGCCCTTGATGAAGAATTGTCTACGAATCGATTTTCGAATTATCAATGAATGGTAATGGTTGTAAGGCGGGATCCACAAGTGCATTAGGGGGCGACAGAGATTGGCTGGCTTCTGGTGATATACAAAACCCATTGTCGTATCAAGGGTGTTCAAGGAACTTCGACACAGCCCAATAGGCCCACTTATATAACCCCCAATATCTAACTTGCCACCAAGTTAGGTAACTCGACGGGCTGCCGTAGTCAGCATCGCAGTCGATAAGATTGGCTTACAGGCCGGTGG'/>
+
+    <sequence spec='beast.base.evolution.alignment.Sequence' taxon='t10_first' value='----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'/>
+
+    <sequence id='dna3' spec='beast.base.evolution.alignment.Sequence' taxon='t7_last' value='GAAGGTTGCCCCAATCCTTTACACAATCCCTAATAAGACGTCGATTCGGGTCTGTCATCGGGACCACACAAAAAGAGTCCCACTTCGCGCGACCTCGGCAGCACTTCGCTAGTACCGGCTTCTAGTGCTAGCCACGTTCATCGGGTTTTCCATTTCTCTGAGTTCCCCGTGCCTACACCAGCGGGCCTGTGGAGACTGGCGGCCCTGCCACTGTGCTGCTCCTCACCTGTTGGCAAGGCCTGGAGAGAGGGTCTTGGGGTGTGGAACCCACCAAGTTCTTTATCCAAGACCATACCTATTGTTCCGATTTCAAAAGCCCATCCGGTGATCAACCACGTTTCCTAGGTGCTGCTATTGACTACATATATCGGTAATCGCCAGTAGCGTGTCCCGACTTCGGTCGTAGTAATAAACAGCTAGCGCGTAATAGTACCCTCGTACTAACCTGGCTTATTTTGTTGGAATAGCCTATGGAAGGATAACAGTAAAGAACGAACGACAAGGAGTCATTACTCCAGGATACATTCAGTCAGGGCTTTACACCCTGCCGGGTGAGGCCCTATTAGCTCTGTTTTGTTTTTTGAAAATAATTACTAGACGTTAGTGCGTGCGATACTGCTAGGTAAGGTTCAATAGTCTTTACAGTACGTGGGCGGAGAAAAATTGGTACCTATTAAACGCAGCGATTCCCTCGTTGGAAACGGCCGAAACCACGGTGGCCCCTGATGAAGACTTGTCCCGCAATCGATTTCCTAATTATCAATGAATGGTATTCGTTGTAAGCCGGGATCCACAAGTGTATCAGGGGGCGATAGAGGTCGGCTGGCTTGTAGTGATATACCAAACCCATTGTCGTATCAAGGGTGTTCCAGGAACTTCGACACAGCCCAATAGGCCCACTTATATAACCCCCAATATCTAACTTGGCACCGAGTTAGGTAACTCGACGGGCTAACATAATTAGAATCGGAGTCGATAAGATTGGCTAAAAGGCCGGTGG'/>
+
+    <sequence spec='beast.base.evolution.alignment.Sequence' taxon='t7_first' value='----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'/>
+
+    <sequence id='dna5' spec='beast.base.evolution.alignment.Sequence' taxon='t5_first' value='GAAGGATGCCCCAATCCTTTACAAAATCCCTAATAAGACGCTGATGCTGGTCTGTACTCGGGACCACACAAAAAGAGGCCCACTTCGCGCGACCTCGGCAGCACTTCCCTGGTACCGGCTTCTAGTGCAATCCACGTTCATCGAGTTTTCCATTTCTCTGCGTTCCCCGTTACTACACCAGCGGGCCTGTGGAGACTGGCGGCCCTGCCAATGTGCTGGTCCTCACCTGTTGGCAAGGCCTCGAGAGAGGGTCTTGGGGTGTGGGACCCGCCAAATCCGTAATCCAAGACCATACCTATGGTTCCTATTTCAAAAGCCCATCCGGTGATGAACCACGTTTCCTAGGTGCCGCTATTGACTACACATATCGGTAATCGCCAGTAGCGCGTCCCGACTTCGGTCGAAGTAATAAACTGCTAGCGCGTAATAGTACCCTCGTACTAACCTGGCTTATTTTGTTGGAATAGCCGATGGAAGGATAACAGTAAAGCATGAACGACAAGGAGTCATTACTCCAGGATACATTCGGTCAGGGCTTTACACCCTGCGGGGTGAGGCCCTATTAGCTCTTTTTTATTTTTTGAAAATAATTACTAGTCGTTAGTGCGCGCGATACTGCTGGGTCAGGTTCAAAAGTCTTAACAGTACGTGGGCGGAGAAAAAGTGGTACCTATTAAACGCAGCGATTCCCTCGGTGGAAACGGCCCAAACCAAGCCGGCCCATGATGAAGAATTGTCCAGGAATCGATTTTCTAATTATCCATGAATGGTGTTCGTTGTAAGCCGGGATCCACAAGTGCATCAGGGGGCGATAAAGGTCTGCTGGCTTATAGTGATATACAATACCCATTGTCGTATCAAGGATGTTCCAGGAACTTCGACACTGCCCAATAGGCCCACTTATATAACCCCCAATAGCTAACTTGCCACCAAGTTAGGTAGCTCGACGGGCTTACATAAACAGAATCGCAGTCGATAAGATTGGCTTACAGGCTGGTGG'/>
+
+    <sequence id='dna6' spec='beast.base.evolution.alignment.Sequence' taxon='t8_last' value='GAAGGTTGCCCCATTCCTTTACACAATCCCTAATAAGACGTCGGTTCTGGTCTGTACTCGGGACCCCACAAAAAGAGGCCGACTTCGCGCGTCCTCGGCAGCACTTCGCTGGTACCGGCTTCTAGTGCTATCCACGTCCATCGGGTTTTCCATTTATCTGCGTTCCGCGTGACTACACCCGCGGGCCTGCGGAGACTGGCGGCCTTGCCAATGTGCTGCTCCTCACCTGTTGGAAAGGCCTCGAGAGAGGGTCTTGGGGTGTGGAACCCACCAGGTCCTTAATGCATGACCATACTTATTCTTCCCATTTCAACAACCAATCCGGTGATGAACCACGTTCCCTAGGTGCCGCGATTCAAGTCATAGATCCGTAATCGCTAGTAGCGTGTGCCGACTTCGGTCGTAGTTATAAACTGCTAGCGGGTAATAGTACCCTCGTACAAACCTGGCTTATTTTGTTGGAATAGCCTATGGAAGGATAACAGTAAACAACGAACGTCAGGGGGTCATTACTCCAGGATACAGTCAGTCAGGGCTTTACACCCTGCGGGGTGAGGCCCTATTAGGTCTTTTTTGTTTTTTGAAAATAATTACTAGTCGTTAGTGGGCGCGATACTGCTGGGTAGGGTTCAAAAGTCTTTACAGTACGTGGGCGGAGAAAAATTGGTACCTATTAGACGCAGCGATTCCCTCGGTGGAAACGGCCGAAACCAAGCCGGCCCGTGATGAAGAATTGTCTAGGACTCGATTTTCTAGTTGTCAATGAATGGTATTAGTTGTAAGCCGGGATCCACAAGTGCATCAGGGGGCGATAGAGGTCGGCTGGCTTCTAGTGAGATGCAAAACCCATTGTCGTATCAAGGGTGTTCCAGGAACTTCGACACAGCCCAATAGGCCCACCTATATAACCCCCAATATCTAACTTGCCTTCAAGTTAGTTAACTCGACGGGCTTACATAATCAGAATCGAAGTCGATAAGATTGGCTTACAGGGCGGTGG'/>
+
+    <sequence id='dna7' spec='beast.base.evolution.alignment.Sequence' taxon='t3_first' value='GAAGGTTGCCCCATTCCTTTACACAATCCCTAATAAGACGTCGGTTCTGGTCTGTACTCGGGACCACACAAAAAGAGGCCGACTTCGCGCGTCCTCGGCAGCACTTCGCTGGTACCGGCTTCTAGTGCTAGCCACGTCCATCGAGTTTTCCATTTATCTGCGTTCCCCGTGACTACACCAGCGGGCCTGCGGAGACTGGCGGCCCTGCCAATGTGCTGCTCCTCACCTGTTGGAAAGGCCTCGAGAGAGGGTCTTGGGGTGTGGAACCCACCAAGTCCTTAATGCATGACCATACTTATTCTTCCCATTTAAAAAACCAATCCGGTGATGAACCACGTTCCCTAGGTGCCGCGATTCACTTCATAGATCCGTAATCGCTAGTAGCGTGTGCCGACTTCGGTCGTAGTTATAAACTGCTAGCGCGTAATAGTACCCTCGTACAAACCTGGCTTATTTTGTTGGAATAGCCTATGGAAGGATAACAGTAAACAACGGACGTCAGGGGGTCATTACTCCAGGATACAGTCAGTCAGGGCTTTACACCCTGCGGGGTGAGGCCCTATTAGGTCTTTTTTGTTTTTTGAAAATAATTACTAGTCGTTAGTGGGCGCGATACTGCTGGGTAGGGTTCAAAAGTCTTTACAGTACGTGGGCGGAGAAAAATTGGTACCTATTAGACGCAGCGATTCCCGCGGTGGAAACGGCCGAAACCAAGCAGGCCCGTGATGAAGAATTGTCTAGCACTCGATTTTCTAATTGTCAATGAATGGTATTCGTTGTAAGCCGGGATTCACAAGCGCATCAGGGGGCGATAGAGGTCGGCTGGCTTCTAGTGAGATGCAAAACCCATTGTCGTATCAAGGGTGTTCCAGGAACTTCGACACAGCCCAATAGGCCCACCTATATAACCCCCAATATCTAACTTGCCTTCAAGTTAGCTAACTCGACCGGCTTACATAATCAGAATCGAAGTCGATAAGATTGGCTTACAGGCCGGTGG'/>
+
+    <sequence id='dna8' spec='beast.base.evolution.alignment.Sequence' taxon='t4_first' value='GAAGGTTGCCCCATTCCTTTACACAATCCCTAATAAGACGTCGGTTCTGGTCTGTACTCGGGACCACACAAAAAGAGGCCGACTTCGTGCGTCCTCGGCAGCACTTCGCTGGTACCGGCTTCTAGTGCTATAGACGTCCATCGGGTTTTCCATTTATCTGCGTTCCCCGTGACTACACCAGCCGGCCTGCGGAGACTGGCGGCCCTGCCAATGTGCTGCTCCTCACCTGTTGGAAAGGCCTCGAGAGAGGGTCTTGGGGTGTGGAACCCACCAAGTCCTTAATGCATGACCATACTTATTCTTCCCATTTCAAAAAACAATCCGGTGATGAACCACGTTCCCTAGGTGCCGCGATTCACTTCATAGATCCGTAATCGCTAGTAGCGTGTGCCGACTTCGGTCGTAGTTATAAACTGCTAGCGCGTAATAGTACCCTCGTACAAACCTGGCTTATTTTGTTGGAATAGCCTATGGAAGGATAACAGTAAACAACGAACGTCAGGGGGTCATTACTCCAGGATACAGTCAGTCCGGGCTTTACACCCTGCGGGGTGAGGCCCTATTAGGTCTTTTTTGTTTTTTGAAAATAATTACTAGTCGTTAGTGGGCGCGATACTGCTGGGTAGGGTTCAAAAGTCTTTACAGTACGTGGGCGGAGAAATATTGGTACCTATTAGACGCAGCGATTCCCTCGGTGGAAACGGCCGAAACCAAGCCAGCCCGTGATGAAGAATTGTCTAGGACTCGATTTTCTAATTGTCAATGAATGGTATTCGTTGTAAGCCGGGATCCACAAGTGCATCAGGGGGCGATAGAGGTCGGCTGGCTTCTAGTGAGATGCAAAACCCATTGTCGTATCAAGGGTGTTCCAGGAACTTCGACACAGCCCAATAGGCCCACCTATATAACCCCCAATATCTAACTTGCCTTCAAGTTAGCTAACTCGACCGGCTTACATAATCAGAATCGAAGTCGATAAGATTGGCTTACAGGCCGGTGG'/>
+
+    <sequence id='dna9' spec='beast.base.evolution.alignment.Sequence' taxon='t6_first' value='GAAGGTTGCCCCATTCCTTTACACAATCCCTAATAAGACGTCGGTTCTGGTCTGTACTCGGGACCACACAAAAAGAGGCCGACTTCGCGCGTCCTCGGCAGCACTTCGCTGGTACCGGCTTCTAGTGCTATCCACGTCCATCGGGCTTTCCATTTATCTGCGTTCCCTGTGACTACACCAGCGGGCTTGCGGAGACTGGCGGCCCTGCCAATGTGCTGCTCCTCACCTGTTGGAAAGGCCTCGAGAGAGGGTCTTGGGGTGTGGAACCCACCAAGTCCTTAATGCATGACCATACTTATTCTTCCCATTTCAAAAACCAATCCGGTGATGAACCACGTTCCCTAGGTGCCGCGATTCACTTCATAGATCCGTAATCGCTAGTAGCGTGTGCCGACTTCGGTCGTAGTTATAAACTGCTAGCGCGTAATAGTACCCTCGTACAAACCTTGCTTATTTTGTTGGAATAGCCTATGGAAGGATAACAGTAAACAACGAACGTCAGGGGGTCATTACTCCAGGATACAGTCAGTCAGGGCTTTACACCCTGCGGGGTGAGGCCCTATTAGGTCTTTTTTGTTTTTTGAAAATAATTACTAGTCGTTAGTGGGCGCGATACTGCTGGGTAGGGTTCAAAAGTCTTTACAGTACGTGTGGGGAGAAAAATTGGTACCTATTAGACGCAGCGATTCCCTCGGTGGAAACGGCCGTAACCAAGCCGGCCCGTGATGAAGAATTGTCTAGGACTCGATTTTCTAATTGTCAATGAATGGTATTCGTTGTAAGCCGGGATCCACAAGTGCATCAGGGGGCGATAGAGGTCGGCTGGCTTCTAGTGAGATGCAAAAACCATTGTCGTATCAAGGGTGTTCCAGGAACTTCGACACAGCCCAATAGGCCCACCTATATAACACCCAATATCTAACTTGCCTTCAAGTTAGCTAACTCGACCGGCTTACATAATCAGAATCGAAGTCGATAAGATTGGCTTACAGGCCGGTGG'/>
+
+    <sequence id='dna10' spec='beast.base.evolution.alignment.Sequence' taxon='t9_last' value='GAAGGTTGCCCCATTCCTTTACACAATCCCTAATAAGACGTCGGTTCTGGTCTGTACTCGGGACCACACAAAAAGAGGCCGACTTCGCGCGTCCTCGGCAGCACTTCGCTGGTACCGGCTTCTAGTGCTATCCACGTCCATCGGGTTTTCCATTTATCTGCGTTCCCCGTGACTACACCAGCGGGCCTGCGGAGACTGGCGGCCCTGCCAATGTGCTGCTCCTCACCTGTTGGAAAGGCCTCGAGAGAGGGTCTTGGGGTGTGGAACCCTCCAAGTCCTTAATGCATGACCATACTTATTCTTCCCATTGCAAAAACCAATCCGGTGATGAACCACGTTCCCTAGGTGCCGCGATTCACTTCATAGATCCGTAATCGCTAGTAGCGTGTGCCGACTTCGGTCGTAGTTATAAACTGCTAGCGCGTAATAGTACCCTCGTACAAACCTGGCTTATTATGTTGGAATAGCCTATGGAAGGATAACAGTAAACAACGAACGTCAGGGGGTCATTACTCCAGGATACAGTCAGTCAGGACTTTACACCCTGCGGGGTGAGGCCCTATTAGGTTTTTTTTGTTTTTTGAAAATAATTACTAGTCGTTAGTGGGCGCGATACTGCTGGGTAGGGTTCAAAAGTCTTTACAGTACGTGGGCGGAGAAAAATTGGTACCTATTAGACGCAGCGATTCCCTCGGTGGAAACGGCCGAAACCAAGCCGGCCCGTGAGGAAGAATTGCCTAGGACTCGATTTTCTAATTGTCAATGAATGGTATTCGTTGTAAGCAGGGATCCACAAGTGCATCAGGGGGCGATAGAGGTCGGCTGGCTTCTAGTGAGATGCAAAACCCATTGTCGTATCAAGGGTGTTCCAGGAACTTCGACACAGCCCAATAGGCCCACCTATATAACCCCCAATATCTAACTTGCCTTCAAGTTAGCTAACTCGACCGGCTTACATAATCAGAATCGAAGTCGATAAGATTGGCTTACAGGCCGGTGG'/>
+
+    <sequence spec='beast.base.evolution.alignment.Sequence' taxon='t9_first' value='----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'/>
+
+    <sequence spec='beast.base.evolution.alignment.Sequence' taxon='t8_first' value='----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'/>
+
+    <sequence spec='beast.base.evolution.alignment.Sequence' taxon='t2_first' value='----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'/>
+
+    <input id='Nucleotide' spec='beast.base.evolution.datatype.Nucleotide' name='userDataType'/>
+
+</data>
+
+
+    <siteModel spec='SiteModel' id="siteModel_dna" gammaCategoryCount='1'>
+        <substModel spec='JukesCantor' id='JC69'/>
+    </siteModel>
+
+    <branchRateModel id="StrictClock_dna" spec="beast.base.evolution.branchratemodel.StrictClockModel">
+        <parameter dimension="1" estimate="false" id="clockRate_dna" minordimension="1" name="clock.rate" value="0.003"/>
+    </branchRateModel>
+
+    <map name="Uniform">beast.base.inference.distribution.Uniform</map>
+    <map name="Exponential">beast.base.inference.distribution.Exponential</map>
+    <map name="LogNormal">beast.base.inference.distribution.LogNormalDistributionModel</map>
+    <map name="Normal">beast.base.inference.distribution.Normal</map>
+    <map name="Beta">beast.base.inference.distribution.Beta</map>
+    <map name="Gamma">beast.base.inference.distribution.Gamma</map>
+    <map name="LaplaceDistribution">beast.base.inference.distribution.LaplaceDistribution</map>
+    <map name="prior">beast.base.inference.distribution.Prior</map>
+    <map name="InverseGamma">beast.base.inference.distribution.InverseGamma</map>
+    <map name="OneOnX">beast.base.inference.distribution.OneOnX</map>
+
+
+    <run spec="MCMC" id="mcmc" chainLength="10000000">
+
+        <state id="state" storeEvery="100">
+            <tree id="tree" spec="sr.evolution.tree.SRTree" nodetype="sr.evolution.tree.SRNode" name="stateNode">
+                <trait id="dateTrait.t:tree" spec="beast.base.evolution.tree.TraitSet" traitname="date-backward">
+                    <taxa spec="TaxonSet" id="taxonSet">
+                        <taxon spec='Taxon' id='t2_first'/>
+						<taxon spec='Taxon' id='t2_last'/>
+						<taxon spec='Taxon' id='t10_first'/>
+						<taxon spec='Taxon' id='t10_last'/>
+						<taxon spec='Taxon' id='t7_first'/>
+						<taxon spec='Taxon' id='t7_last'/>
+						<taxon spec='Taxon' id='t5_first'/>
+						<taxon spec='Taxon' id='t8_first'/>
+						<taxon spec='Taxon' id='t8_last'/>
+						<taxon spec='Taxon' id='t3_first'/>
+						<taxon spec='Taxon' id='t4_first'/>
+						<taxon spec='Taxon' id='t6_first'/>
+						<taxon spec='Taxon' id='t9_first'/>
+						<taxon spec='Taxon' id='t9_last'/>
+                    </taxa>
+                    t2_first=52.4781993174481, t2_last=3.87189449638927, t10_first=5.57186014215973, t10_last=0, t7_first=11.8898369941966, t7_last=0, t5_first=0, t8_first=11.7308353882846, t8_last=0, t3_first=0, t4_first=0, t6_first=0, t9_first=2.2478674842893, t9_last=0
+                </trait>
+                <taxonset idref="taxonSet" />
+                <stratigraphicRange id="r0" spec="StratigraphicRange" firstOccurrence="@t2_first" lastOccurrence="@t2_last"/>
+				<stratigraphicRange id="r1" spec="StratigraphicRange" firstOccurrence="@t10_first" lastOccurrence="@t10_last"/>
+				<stratigraphicRange id="r2" spec="StratigraphicRange" firstOccurrence="@t7_first" lastOccurrence="@t7_last"/>
+				<stratigraphicRange id="r3" spec="StratigraphicRange" firstOccurrence="@t5_first" lastOccurrence="@t5_first"/>
+				<stratigraphicRange id="r4" spec="StratigraphicRange" firstOccurrence="@t8_first" lastOccurrence="@t8_last"/>
+				<stratigraphicRange id="r5" spec="StratigraphicRange" firstOccurrence="@t3_first" lastOccurrence="@t3_first"/>
+				<stratigraphicRange id="r6" spec="StratigraphicRange" firstOccurrence="@t4_first" lastOccurrence="@t4_first"/>
+				<stratigraphicRange id="r7" spec="StratigraphicRange" firstOccurrence="@t6_first" lastOccurrence="@t6_first"/>
+				<stratigraphicRange id="r8" spec="StratigraphicRange" firstOccurrence="@t9_first" lastOccurrence="@t9_last"/>
+            </tree>
+            <parameter id='origin' lower='0.0'
+                                name='stateNode'>444.343019938816</parameter>
+            <parameter id='diversificationRate' lower='0.0'
+                                name='stateNode'>0.00657065760027265</parameter>
+            <parameter id='turnover' lower='0.' upper = '1.'
+                                name='stateNode'>0.377619022270665</parameter>
+            <parameter id='samplingProportion' lower='0.0'
+                                name='stateNode'>0.563402283471078</parameter>
+            <parameter id='samplingAtPresentProb' lower='0.0'
+                                name='stateNode'>0.8288141598925</parameter>
+        </state>
+
+        <init estimate="false" id="Randomtree" initial="@tree" spec="RandomSRangeTree" nodetype="sr.evolution.tree.SRNode" taxonset="@taxonSet">
+            <populationModel id="ConstantPopulation0.t" spec="ConstantPopulation">
+                <parameter id="randomPopSize.t" name="popSize">1.0</parameter>
+            </populationModel>
+            <stratigraphicRange idref="r0"/>
+			<stratigraphicRange idref="r1"/>
+			<stratigraphicRange idref="r2"/>
+			<stratigraphicRange idref="r3"/>
+			<stratigraphicRange idref="r4"/>
+			<stratigraphicRange idref="r5"/>
+			<stratigraphicRange idref="r6"/>
+			<stratigraphicRange idref="r7"/>
+			<stratigraphicRange idref="r8"/>
+        </init>
+
+        <init id="diversificationRateInitializer" spec="feast.parameter.InitRandomRealParameter"
+              initial="@diversificationRate" distr="@LogNormal.div">
+        </init>
+        <init id="turnoverInitializer" spec="feast.parameter.InitRandomRealParameter"
+              initial="@turnover" distr="@Uniform.turnover">
+        </init>
+        <init id="samplingProportionInitializer" spec="feast.parameter.InitRandomRealParameter"
+              initial="@samplingProportion" distr="@Uniform.samplingProportion">
+        </init>
+
+        <distribution id="posterior" spec="CompoundDistribution">
+            <distribution id="prior" spec="CompoundDistribution">
+                <distribution spec="SRangesBirthDeathModel" id="birthDeath" tree="@tree"  conditionOnRhoSampling="true" removalProbability="0.0">
+                    <origin idref="origin"/>
+                    <diversificationRate idref="diversificationRate"/>
+                    <turnover idref="turnover"/>
+                    <samplingProportion idref="samplingProportion"/>
+                    <rho idref="samplingAtPresentProb"/>
+                </distribution>
+                <prior id="originPrior" name="distribution" x="@origin">
+                    <Uniform id="Uniform.origin" name="distr" lower="1" upper="1000"/>
+                </prior>
+                <prior id="diversificationRatePrior" name="distribution" x="@diversificationRate">
+                    <LogNormal id="LogNormal.div" name="distr" M="-3.5" S="1.5"/>
+                </prior>
+                <prior id="turnoverPrior" name="distribution" x="@turnover">
+                    <Uniform id="Uniform.turnover" name="distr" lower="0." upper="1." offset="0."/>
+                </prior>
+                <prior id="samplingProportionPrior" name="distribution" x="@samplingProportion">
+                    <Uniform id="Uniform.samplingProportion" name="distr" lower="0." upper="1." offset="0."/>
+                </prior>
+<!--                <prior id="samplingAtPresentProbPrior" name="distribution" x="@samplingAtPresentProb">-->
+<!--                    <Uniform id="Uniform.rho" lower="0.8" upper="1." name="distr"/>-->
+<!--                </prior>-->
+
+            </distribution>
+
+            <distribution id="dnaTreeLikelihood" spec="TreeLikelihood" useAmbiguities="true" tree="@tree">
+                <data idref="dna_alignment"/>
+                <siteModel idref="siteModel_dna"/>
+                <branchRateModel idref="StrictClock_dna"/>
+            </distribution>
+
+            <distribution id="morphTreeLikelihood" spec="TreeLikelihood" useAmbiguities="true" tree="@tree">
+                <data idref="morph_alignment"/>
+                <siteModel idref="morphSiteModel"/>
+                <branchRateModel idref="StrictClock_morph"/>
+            </distribution>
+        </distribution>
+
+
+<!--        Parameter operators -->
+        <operator id="originScaler" parameter="@origin" scaleFactor="0.75" spec="ScaleOperator" weight="1.0"/>
+        <operator id='divRateOperator' spec='ScaleOperator' scaleFactor=".75" weight="5" parameter="@diversificationRate"/>
+        <operator id='turnoverOperator' spec='ScaleOperator' scaleFactor=".75" weight="5" parameter="@turnover"/>
+        <operator id='samplingProportionOperator' spec='ScaleOperator' scaleFactor=".75" weight="5" parameter="@samplingProportion"/>
+<!--        <operator id='samplingAtPresentProbOperator' spec='ScaleOperator' scaleFactor=".75" weight="5" parameter="@samplingAtPresentProb"/>-->
+
+<!--        Tree operators -->
+        <operator id="SATreeRootScaler" rootOnly="true" scaleFactor="0.95" spec="SAScaleOperator" tree="@tree" weight="3.0" />
+        <operator id="SRWilsonBalding" spec='SRWilsonBalding' weight="20" tree="@tree"/>
+        <operator id="LeftRightChildSwap" spec='LeftRightChildSwap' weight="5" tree="@tree"/>
+        <operator id="LeafToSampledAncestorJump" spec='SRLeafToSampledAncestorJump' weight="20" tree="@tree" />
+        <operator spec="SAUniform" weight="20" tree="@tree"/>
+        <operator id='treeScaler' spec="SAScaleOperator" scaleFactor=".95" weight="10.0" tree="@tree"/>
+
+
+        <logger logEvery="5000" fileName="sRanges.$(seed).log">
+            <model idref='posterior'/>
+            <log idref="dnaTreeLikelihood"/>
+            <log idref="morphTreeLikelihood"/>
+
+            <log id="TreeHeight" spec="TreeHeightLogger" tree="@tree"/>
+            <log idref="origin"/>
+            <log idref="diversificationRate"/>
+            <log idref="turnover"/>
+            <log idref="samplingProportion"/>
+            <log idref="samplingAtPresentProb"/>
+            <log idref="posterior"/>
+        </logger>
+        <logger logEvery="5000" fileName="sRanges.$(seed).trees">
+            <log idref="tree"/>
+        </logger>
+    </run>
+        
+        
+        </beast>
