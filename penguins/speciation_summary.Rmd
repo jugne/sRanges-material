@@ -1,0 +1,85 @@
+---
+title: "speciation_summary.RMD"
+output: html_document
+date: "2023-06-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+## Speciation events within a range
+The speciation log file contains records of all speciation events that happened within a range. 
+It records the species of the range (ancestor) and all descendants. 
+It also notes the nodes and branch lengths (in time scale) that separate the ancestor and descendant species.
+```{r}
+library(coda)
+log <-  read.table("morph_at_start/log_branch_rates/penguins_inf_morph_at_start.speciation.log", header=TRUE, sep="\t")
+burnIn <- 0.1
+log <- tail(log, -round(nrow(log)*burnIn)) # take out 10% burnin
+columnsWithValue <- colnames(log)[colSums(log != "0.0,0.0") != 0]
+# we don't need "Sample" column
+columnsWithValue <- columnsWithValue[2:length(columnsWithValue)]
+log <- log[, columnsWithValue]
+```
+
+```{r}
+n <- length(columnsWithValue)
+d <- data.frame(from=character(n), to=character(n), prob=numeric(n), length_median=numeric(n),
+                length_hpd_l=numeric(n), length_hpd_h=numeric(n), nodes_median=numeric(n),
+                nodes_hpd_l=numeric(n), nodes_hpd_h=numeric(n))
+# Split each string by ":"
+split_strings <- strsplit(columnsWithoutValue, "\\.")
+# Extract the first and second elements
+d$from <- sapply(split_strings, function(x) x[1])
+d$to <- sapply(split_strings, function(x) x[2])
+
+for (i in 1:n){
+  split_strings <- strsplit(log[,columnsWithoutValue[i]], ",")
+  length <- sapply(split_strings, function(x) as.double(x[1]))
+  nodes <- sapply(split_strings, function(x) as.double(x[2]))
+  
+  d$prob[i] <- length(length)
+  idx <- which(length != 0)
+  length <- length[idx] # no length means no speciation between the two species recorded.
+  nodes <- nodes[idx] # 0 intermediate nodes are legit
+  d$prob[i] <- length(length)/d$prob[i]
+  
+  if (length(idx)>1){
+    d$length_median[i] <- median(length)
+    length_hpd <- HPDinterval(as.mcmc(length))
+    d$length_hpd_l[i] <- length_hpd[1]
+    d$length_hpd_h[i] <- length_hpd[2]
+    
+    d$nodes_median[i] <- median(nodes)
+    nodes_hpd <- HPDinterval(as.mcmc(nodes))
+    d$nodes_hpd_l[i] <- nodes_hpd[1]
+    d$nodes_hpd_h[i] <- nodes_hpd[2]
+  }
+}
+```
+
+```{r}
+head(d)
+```
+
+
+## Comaprison of the clades obtained by SA and sRanges 
+The next log file is obtained by running a SRangesAndSACladeSetComparator tool on trees obtained by Sampled ancestor
+and sRanges packages. For all clades that were found, the posterior probability of the clade, its height and HPD interval bounds for the height are recorded.
+```{r}
+# this is already with bunin
+log <-  read.table("figures/clade_comp.txt", header=FALSE, sep=" ")
+colnames(log) <- c("Species", "PosteriorProbSA", "PosteriorProbSRanges",
+                   "HeightSA", "HeightSA_HPD_l", "HeightSA_HPD_h",
+                   "HeightSRanges", "HeightSRanges_HPD_l", "HeightSRanges_HPD_h")
+
+
+```
+
+You can obtain the clades that have posterior support difference greater than some threshold:
+```{r}
+thr <- 0.25 
+log_thr <- log[which(abs(log$PosteriorProbSA-log$PosteriorProbSRanges)>thr),]
+```
