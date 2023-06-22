@@ -1,8 +1,0 @@
-<itsabeastystatewerein version='2.0' sample='2441299'>
-<statenode id='tree'>((2:46.7922664291744,1:0.0)13:3.097695320498353,(((4:2.5616289574319047,5:2.5616289574319047)15:14.954510562534795,3:0.0)21:11.21480573214085,((7:12.064326536608627,(((9:3.5065056582950787,10:3.5065056582950787)18:3.709234608104781,8:0.0)14:2.1318589990754733,(12:4.71037823802575,11:0.0)16:4.637221027449583)17:2.716727271133294)20:3.6780934953654736,6:0.0)19:12.988525220133448)22:21.1590164975652)23:0.0</statenode>
-<statenode id='origin'>origin[1 1] (0.0,Infinity): 54.96567189368908 </statenode>
-<statenode id='diversificationRate'>diversificationRate[1 1] (0.0,Infinity): 0.043205792188534785 </statenode>
-<statenode id='turnover'>turnover[1 1] (0.0,1.0): 0.3228344146465321 </statenode>
-<statenode id='samplingProportion'>samplingProportion[1 1] (0.0,Infinity): 0.7141773734450163 </statenode>
-<statenode id='samplingAtPresentProb'>samplingAtPresentProb[1 1] (0.0,Infinity): 0.8288141598925 </statenode>
-</itsabeastystatewerein>
