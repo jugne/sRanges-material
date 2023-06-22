@@ -15,7 +15,7 @@ It records the species of the range (ancestor) and all descendants.
 It also notes the nodes and branch lengths (in time scale) that separate the ancestor and descendant species.
 ```{r}
 library(coda)
-log <-  read.table("morph_at_start/log_branch_rates/penguins_inf_morph_at_start.speciation.log", header=TRUE, sep="\t")
+log <-  read.table("morph_at_start/log_branch_rates/relog/penguins_inf_morph_at_start.speciation.log", header=TRUE, sep="\t")
 burnIn <- 0.1
 log <- tail(log, -round(nrow(log)*burnIn)) # take out 10% burnin
 columnsWithValue <- colnames(log)[colSums(log != "0.0,0.0") != 0]
@@ -30,13 +30,13 @@ d <- data.frame(from=character(n), to=character(n), prob=numeric(n), length_medi
                 length_hpd_l=numeric(n), length_hpd_h=numeric(n), nodes_median=numeric(n),
                 nodes_hpd_l=numeric(n), nodes_hpd_h=numeric(n))
 # Split each string by ":"
-split_strings <- strsplit(columnsWithoutValue, "\\.")
+split_strings <- strsplit(columnsWithValue, "\\.")
 # Extract the first and second elements
 d$from <- sapply(split_strings, function(x) x[1])
 d$to <- sapply(split_strings, function(x) x[2])
 
 for (i in 1:n){
-  split_strings <- strsplit(log[,columnsWithoutValue[i]], ",")
+  split_strings <- strsplit(log[,columnsWithValue[i]], ",")
   length <- sapply(split_strings, function(x) as.double(x[1]))
   nodes <- sapply(split_strings, function(x) as.double(x[2]))
   
@@ -60,7 +60,9 @@ for (i in 1:n){
 }
 ```
 
+Sort for highest posterior probability of divergence.
 ```{r}
+d <- d[order(d$prob,decreasing = TRUE),]
 head(d)
 ```
 
