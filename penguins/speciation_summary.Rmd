@@ -67,7 +67,7 @@ head(d)
 ```
 
 
-## Comaprison of the clades obtained by SA and sRanges 
+## Comaparison of the clades obtained by SA and sRanges 
 The next log file is obtained by running a SRangesAndSACladeSetComparator tool on trees obtained by Sampled ancestor
 and sRanges packages. For all clades that were found, the posterior probability of the clade, its height and HPD interval bounds for the height are recorded.
 ```{r}
