@@ -80,8 +80,17 @@ colnames(log) <- c("Species", "PosteriorProbSA", "PosteriorProbSRanges",
 
 ```
 
+
+You can obtain remove the clades with very low probabilities in both sets
+```{r}
+thr <- 0.01 
+log_thr <- log[-which(log$PosteriorProbSA<thr & log$PosteriorProbSRanges<thr),]
+head(log_thr)
+```
+
 You can obtain the clades that have posterior support difference greater than some threshold:
 ```{r}
-thr <- 0.25 
+thr <- 0.15 
 log_thr <- log[which(abs(log$PosteriorProbSA-log$PosteriorProbSRanges)>thr),]
+head(log_thr)
 ```

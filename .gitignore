@@ -6,7 +6,6 @@
 *.log
 
 # Text files
-*.pdf
 *.txt
 
 # BlueJ files
