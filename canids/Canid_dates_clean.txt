@@ -204,6 +204,7 @@ Canis_edwardii_last 1.8 0.3
 Canis_edwardii_first 4.9 1.806
 Canis_armbrusteri_last 0.126 0.0117
 Canis_armbrusteri_first 1.806 0.781
+Canis_latrans_last 0
 Canis_latrans_first 4.9 1.806
 Borophagus_diversidens_last 2.588 1.8
 Borophagus_diversidens_first 4.9 1.806
@@ -216,31 +217,45 @@ Ferrucyon_avius_last 4.9 1.8
 Ferrucyon_avius_first 4.9 1.8
 Theriodictis_floridanus_last 2.588 1.8
 Theriodictis_floridanus_first 4.9 1.806
+Urocyon_cinereoargenteus_last 0
 Urocyon_cinereoargenteus_first 2.588 1.806
 Urocyon_progressus_first 4.9 1.8
+Canis_rufus_last 0
 Canis_rufus_first 4.9 1.8
 Aenocyon_dirus_last 0.126 0.0117
 Aenocyon_dirus_first 3.6 0.781
 Canis_cedazoensis_first 1.8 0.3
 Urocyon_minicephalus_last 1.8 0.3
 Urocyon_minicephalus_first 1.8 0.3
+Canis_lupus_last 0
 Canis_lupus_first 3.6 2.588
 Urocyon_citrinus_first 2.588 1.806
 Xenocyon_texanus_first 1.8 0.63
 Xenocyon_lycaonoides_last 0.781 0.0117
 Xenocyon_lycaonoides_first 2.588 0.781
+Lupulella_mesomelas_last 0
 Lupulella_mesomelas_first 5.333 2.588
+Cerdocyon_thous_last 0
 Cerdocyon_thous_first 0.781 0.012
+Lupulella_adusta_last 0
 Lupulella_adusta_first 2.588 0.0117
+Lycaon_pictus_last 0
 Lycaon_pictus_first 2.588 0.0117
+Otocyon_megalotis_last 0
 Otocyon_megalotis_first 2.588 0.0117
+Canis_aureus_last 0
 Canis_aureus_first 2.588 0.781
+Canis_lupaster_last 0
 Canis_lupaster_first 1.5 1.2
+Canis_familiaris_last 0
 Canis_familiaris_first 2.588 0.781
 Canis_apolloniensis_first 1.2 0.781
+Cuon_alpinus_last 0
 Cuon_alpinus_first 2.588 0.3
 Aelurodon_montanensis_first 15.97 13.6
+Lycalopex_gymnocercus_last 0
 Lycalopex_gymnocercus_first 2.588 0.781
+Chrysocyon_brachyurus_last 0
 Chrysocyon_brachyurus_first 2.588 0.781
 Borophagus_dudleyi_last 5.333 3.6
 Borophagus_dudleyi_first 10.3 4.9
@@ -249,3 +264,21 @@ Leptocyon_tejonensis_first 13.6 10.3
 Metalopex_bakeri_first 10.3 4.9
 Eucyon_skinneri_first 13.6 10.3
 Cynarctus_wangi_first 15.97 13.6
+Vulpes_stenognathus_last 1.8 0.3
+Vulpes_stenognathus_first 13.6 4.9
+Canis_arnensis_last 2.588 0.0117
+Canis_arnensis_first 5.333 2.588
+Canis_etruscus_last 0.781 0.126
+Canis_etruscus_first 11.608 2.588
+Xenocyon_falconeri_last 2.588 0.0117
+Xenocyon_falconeri_first 2.588 1.806
+Xenocyon_antonii_first 3.6 0.781
+Canis_mosbachensis_last 0.781 0
+Canis_mosbachensis_first 3.2 2.588
+Canis_palmidens_first 3.6 0.781
+Canis_variabilis_last 0.126 0.0117
+Canis_variabilis_first 2.588 0.781
+Canis_chihliensis_last 2.588 0.781
+Canis_chihliensis_first 3.6 0.781
+Canis_simensis_last 0
+Canis_simensis_first 0
