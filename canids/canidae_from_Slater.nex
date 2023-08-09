@@ -122,7 +122,7 @@ BEGIN DATA;
     Canis_aureus                     01001000311010011100??11100001100?001??1?02?01001111100100001010010000011000201?
     Canis_arnensis                   01001000311010010000??10100001100?001??1?02?0100011110010000101001000?0110?0300?
     Canis_etruscus                   01001000311010011100??10100001110?001??1?02?0100011110011000101?01000000101030??
-    Canis_falconeri                  0100?001311010011100??10100001100?100??1?02?0110111110011000101001?00?0?10?0?0??
+    Xenocyon_falconeri               0100?001311010011100??10100001100?100??1?02?0110111110011000101001?00?0?10?0?0??
     Xenocyon_antonii                 01001001311010011100??10100001100?100??1?02?01101111100110001010010000011000300?
     Canis_edwardii                   01001000311010011100??11100001110?001??1?02?010011111001100010100100000010?0201?
     Canis_mosbachensis               01001000311010011100??11100001110?001??1?02?010011111001100010100100000010?0201?
@@ -131,13 +131,14 @@ BEGIN DATA;
     Canis_chihliensis                01001000311010011100??10130001110?101??1?02?01101111100100001011010000001000300?
     Canis_latrans                    01001000311010011100??11100001110?001??1?02?01001111100110001010010000011000201?
     Canis_armbrusteri                0100?001311010001110??11130001210?001??1?02?01101111100110201011011001001010301?
-    Canis_dirus                      01001001311010011110??11130001211?100??1?02?01101111100110201011011001001010301?
+    Aenocyon_dirus                   01001001311010011110??11130001211?100??1?02?01101111100110201011011001001010301?
     Canis_lupus                      01001000311010011100??21100001210?101??1?02?01001111100110001011011000001000301?
     Xenocyon_texanus                 01001001311010010100??10100001111?100??1?02?01101111102010201010030000001000300?
+    Cuon_alpinus                     01001001002100010100??10100001111?120??1?02?11200110002020201012031000001000200?
     Lycaon_pictus                    01001001002100010100??10100001111?120??1?02?11200110002010201011031000001000201?
     Canis_simensis                   01001000311010010000??20100001111?001??1?02?11100111100100001010021000001000200?
-    Canis_mesomelas                  01001000311010010000??10100001110?101??1?02?01100111100100001011010000001000100?
-    Canis_adustus                    010010003110100?0000??20100001110?001??0?02?011001111001000?1011011000001000101?
+    Lupulella_mesomelas              01001000311010010000??10100001110?101??1?02?01100111100100001011010000001000100?
+    Lupulella_adusta                 010010003110100?0000??20100001110?001??0?02?011001111001000?1011011000001000101?
 
     outgroup                         00000?0000?0000?00000000000?00?00000000000?
     Prohesperocyon_wilsoni           00000??000?0011011000000000?00?0000100?????
@@ -255,7 +256,7 @@ BEGIN DATA;
     Canis_aureus                     10010??10111??10111?210110000010?0?1??11111
     Canis_arnensis                   10?10??10111??10111?2?0?100?0010?0?1???????
     Canis_etruscus                   10?10??10111??10111?210110000010?0?1?????1?
-    Canis_falconeri                  ????0????1????10111?2????????010???1???????
+    Xenocyon_falconeri               ????0????1????10111?2????????010???1???????
     Xenocyon_antonii                 10?10??00111??10111?210110000?10?0?1???????
     Canis_edwardii                   10?10??00111??10111?210110000010?0?1??11?1?
     Canis_mosbachensis               ????0??10111??10111?2????????010???1??1111?
@@ -264,13 +265,14 @@ BEGIN DATA;
     Canis_chihliensis                10?10??10111??10111?210100000010?0?1???????
     Canis_latrans                    10?10??10111??10111?210110000010?0?1??11121
     Canis_armbrusteri                10110??11111??10111?220210010010?0?1??11?2?
-    Canis_dirus                      10110??11111??10111?220210010010?0?1??11121
+    Aenocyon_dirus                   10110??11111??10111?220210010010?0?1??11121
     Canis_lupus                      10110??11111??10111?220210000010?0?1??11121
     Xenocyon_texanus                 10??0??1?110??10111?220210000010?0?1???????
+    Cuon_alpinus                     10100??00111??10111?210210000010?0?1??11121
     Lycaon_pictus                    10100??00111??10111?210210000010?0?1??11121
     Canis_simensis                   10110??00111??10111?2101100000?0?0?1??????1
-    Canis_mesomelas                  10000??00110??10111?210110000010?0?1??????1
-    Canis_adustus                    10000??00110??10111?210110000??0?0?1??????1
+    Lupulella_mesomelas              10000??00110??10111?210110000010?0?1??????1
+    Lupulella_adusta                 10000??00110??10111?210110000??0?0?1??????1
   ;
 END;
 
@@ -281,12 +283,12 @@ begin mrbayes;
 	constraint root = 1-.;
 	constraint canidae = 2-133;
 	constraint osbornodon =  Osbornodon_iamonensis Osbornodon_brachypus  Osbornodon_fricki;
-	constraint living =  Leptocyon_mollis Leptocyon_douglassi Leptocyon_vulpinus Leptocyon_gregorii Leptocyon_leidyi Leptocyon_vafer Leptocyon_matthewi Vulpes_stenognathus Metalopex_macconnelli Metalopex_merriami Urocyon_webbi Urocyon_galushai Urocyon_citrinus Urocyon_minicephalus Urocyon_cinereoargenteus Cerdocyon_texanus Eucyon_davisi Canis_ferox Canis_thooides Canis_lepophagus Canis_aureus Canis_arnensis Canis_etruscus Canis_falconeri Xenocyon_antonii Canis_edwardii Canis_mosbachensis Canis_palmidens Canis_variabilis Canis_chihliensis Canis_latrans Canis_armbrusteri Canis_dirus Canis_lupus Xenocyon_texanus Lycaon_pictus Canis_simensis Canis_mesomelas Canis_adustus;
+	constraint living =  Leptocyon_mollis Leptocyon_douglassi Leptocyon_vulpinus Leptocyon_gregorii Leptocyon_leidyi Leptocyon_vafer Leptocyon_matthewi Vulpes_stenognathus Metalopex_macconnelli Metalopex_merriami Urocyon_webbi Urocyon_galushai Urocyon_citrinus Urocyon_minicephalus Urocyon_cinereoargenteus Cerdocyon_texanus Eucyon_davisi Canis_ferox Canis_thooides Canis_lepophagus Canis_aureus Canis_arnensis Canis_etruscus Xenocyon_falconeri Xenocyon_antonii Canis_edwardii Canis_mosbachensis Canis_palmidens Canis_variabilis Canis_chihliensis Canis_latrans Canis_armbrusteri Aenocyon_dirus Canis_lupus Xenocyon_texanus Cuon_alpini Lycaon_pictus Canis_simensis Lupulella_mesomelas Lupulella_adusta;
 	constraint metalopexurocyon = Metalopex_macconnelli Metalopex_merriami Urocyon_webbi Urocyon_galushai Urocyon_citrinus Urocyon_minicephalus Urocyon_cinereoargenteus;
-	constraint canini = Cerdocyon_texanus Eucyon_davisi Canis_ferox Canis_thooides Canis_lepophagus Canis_aureus Canis_arnensis Canis_etruscus Canis_falconeri Xenocyon_antonii Canis_edwardii Canis_mosbachensis Canis_palmidens Canis_variabilis Canis_chihliensis Canis_latrans Canis_armbrusteri Canis_dirus Canis_lupus Xenocyon_texanus Lycaon_pictus Canis_simensis Canis_mesomelas Canis_adustus;
-	constraint canis = Canis_ferox Canis_thooides Canis_lepophagus Canis_aureus Canis_arnensis Canis_etruscus Canis_falconeri Xenocyon_antonii Canis_edwardii Canis_mosbachensis Canis_palmidens Canis_variabilis Canis_chihliensis Canis_latrans Canis_armbrusteri Canis_dirus Canis_lupus Xenocyon_texanus Lycaon_pictus Canis_simensis Canis_mesomelas Canis_adustus;
-	constraint diruscomplex = Canis_armbrusteri Canis_dirus;
-	constraint xenocyon = Xenocyon_texanus Lycaon_pictus;
+	constraint canini = Cerdocyon_texanus Eucyon_davisi Canis_ferox Canis_thooides Canis_lepophagus Canis_aureus Canis_arnensis Canis_etruscus Xenocyon_falconeri Xenocyon_antonii Canis_edwardii Canis_mosbachensis Canis_palmidens Canis_variabilis Canis_chihliensis Canis_latrans Canis_armbrusteri Aenocyon_dirus Canis_lupus Xenocyon_texanus Cuon_alpini Lycaon_pictus Canis_simensis Lupulella_mesomelas Lupulella_adusta;
+	constraint canis = Canis_ferox Canis_thooides Canis_lepophagus Canis_aureus Canis_arnensis Canis_etruscus Xenocyon_falconeri Xenocyon_antonii Canis_edwardii Canis_mosbachensis Canis_palmidens Canis_variabilis Canis_chihliensis Canis_latrans Canis_armbrusteri Aenocyon_dirus Canis_lupus Xenocyon_texanus Cuon_alpini Lycaon_pictus Canis_simensis Lupulella_mesomelas Lupulella_adusta;
+	constraint diruscomplex = Canis_armbrusteri Aenocyon_dirus;
+	constraint xenocyon = Xenocyon_texanus Cuon_alpini Lycaon_pictus;
 	constraint oxetotarocyon = Oxetocyon_cuspidatus Otarocyon_macdonaldi Otarocyon_cooki;
 	constraint cynarctoides =  Cynarctoides_gawnae Cynarctoides_acridens Cynarctoides_emryi;
 	constraint paracynarctus =  Paracynarctus_kelloggi Paracynarctus_sinclairi Cynarctus_galushai Cynarctus_marylandica Cynarctus_saxatilis Cynarctus_voorhiesi Cynarctus_crucidens;
@@ -415,7 +417,7 @@ calibrate	outgroup = fixed(40)
 			Canis_lepophagus  = fixed(1.8)             
 			Canis_arnensis  = fixed(1.5)               
 			Canis_etruscus = fixed(1.7)                
-			Canis_falconeri = fixed(1.5)     
+			Xenocyon_falconeri = fixed(1.5)     
 			Xenocyon_antonii = fixed(1.2)               
 			Canis_edwardii = fixed(0.3)                
 			Canis_mosbachensis = fixed(0.5)            
@@ -423,7 +425,7 @@ calibrate	outgroup = fixed(40)
 			Canis_variabilis  = fixed(0.5)             
 			Canis_chihliensis = fixed(1.2)             
 			Canis_armbrusteri = fixed(0.3)             
-			Canis_dirus = fixed(0.012)                   
+			Aenocyon_dirus = fixed(0.012)                   
 			Xenocyon_texanus  = fixed(0.24)
 			;
 			
@@ -470,7 +472,7 @@ calibrate	outgroup = fixed(40)
 	
 	
 	[-- remove most old world canis species - just keep those that help place Cuon / Lycaon]
-	delete  Canis_aureus Canis_arnensis Canis_etruscus Xenocyon_antonii Canis_mosbachensis Canis_palmidens Canis_variabilis Canis_chihliensis Canis_simensis Canis_mesomelas Canis_adustus;       
+	delete  Canis_aureus Canis_arnensis Canis_etruscus Xenocyon_antonii Canis_mosbachensis Canis_palmidens Canis_variabilis Canis_chihliensis Canis_simensis Lupulella_mesomelas Lupulella_adusta;       
 
 	
 	set usebeagle=yes beagledevice=CPU beagleprecision=double beaglescaling=always beaglesse=no beagleopenmp=no;
