@@ -15,9 +15,10 @@ It records the species of the range (ancestor) and all descendants.
 It also notes the nodes and branch lengths (in time scale) that separate the ancestor and descendant species.
 ```{r}
 library(coda)
-log <-  read.table("morph_at_start/log_branch_rates/relog/penguins_inf_morph_at_start.speciation.log", header=TRUE, sep="\t")
-burnIn <- 0.1
-log <- tail(log, -round(nrow(log)*burnIn)) # take out 10% burnin
+log <-  read.table("morph_at_start/log_branch_rates/rerun/speciation_combined.log", header=TRUE, sep="\t")
+# burnIn <- 0.1
+# log <- tail(log, -round(nrow(log)*burnIn)) # take out 10% burnin
+log<-log[,1:(ncol(log)-1)]
 columnsWithValue <- colnames(log)[colSums(log != "0.0,0.0") != 0]
 # we don't need "Sample" column
 columnsWithValue <- columnsWithValue[2:length(columnsWithValue)]
@@ -63,7 +64,7 @@ for (i in 1:n){
 Sort for highest posterior probability of divergence.
 ```{r}
 d <- d[order(d$prob,decreasing = TRUE),]
-head(d)
+head(d, 30)
 ```
 
 
@@ -72,7 +73,7 @@ The next log file is obtained by running a SRangesAndSACladeSetComparator tool o
 and sRanges packages. For all clades that were found, the posterior probability of the clade, its height and HPD interval bounds for the height are recorded.
 ```{r}
 # this is already with bunin
-log <-  read.table("figures/clade_comp.txt", header=FALSE, sep=" ")
+log <-  read.table("figures2/clade_comp.txt", header=FALSE, sep=" ")
 colnames(log) <- c("Species", "PosteriorProbSA", "PosteriorProbSRanges",
                    "HeightSA", "HeightSA_HPD_l", "HeightSA_HPD_h",
                    "HeightSRanges", "HeightSRanges_HPD_l", "HeightSRanges_HPD_h")
@@ -81,7 +82,7 @@ colnames(log) <- c("Species", "PosteriorProbSA", "PosteriorProbSRanges",
 ```
 
 
-You can obtain remove the clades with very low probabilities in both sets
+You can obtain the clades with very low probabilities in both sets
 ```{r}
 thr <- 0.01 
 log_thr <- log[-which(log$PosteriorProbSA<thr & log$PosteriorProbSRanges<thr),]
@@ -92,5 +93,67 @@ You can obtain the clades that have posterior support difference greater than so
 ```{r}
 thr <- 0.15 
 log_thr <- log[which(abs(log$PosteriorProbSA-log$PosteriorProbSRanges)>thr),]
+log_thr$probDiff <- abs(log_thr$PosteriorProbSA-log_thr$PosteriorProbSRanges)
+log_thr$nSpecies <- count.fields(textConnection(log_thr$Species), sep = ",")
 head(log_thr)
 ```
+
+Or filter the log to only keep clades associated with probability more than some threshold
+```{r}
+thr <- 0.1 
+log_thr_both <- log[which(log$PosteriorProbSA>thr | log$PosteriorProbSRanges>thr),]
+log_thr_both$nSpecies <- count.fields(textConnection(log_thr_both$Species), sep = ",")
+head(log_thr_both)
+```
+
+Here we try to find the most probable clades of less than 15 species and involving Delphinornis gracilis
+```{r}
+Delphinornis_gracilis<- log_thr_both[grep("Delphinornis_gracilis", log_thr_both$Species),]
+Delphinornis_gracilis <- Delphinornis_gracilis[which(Delphinornis_gracilis$nSpecies<15),]
+print(Delphinornis_gracilis)
+```
+
+Here, we analyse clades involving Madrynornis mirandus
+```{r}
+Madrynornis_mirandus<- log_thr_both[grep("Madrynornis_mirandus", log_thr_both$Species),]
+Madrynornis_mirandus <- Madrynornis_mirandus[which(Madrynornis_mirandus$PosteriorProbSA>thr | Madrynornis_mirandus$PosteriorProbSRanges>0.1),]
+Madrynornis_mirandus$probDiff <- abs(Madrynornis_mirandus$PosteriorProbSA-Madrynornis_mirandus$PosteriorProbSRanges)
+Madrynornis_mirandus_thr <- Madrynornis_mirandus[which(Madrynornis_mirandus$probDiff>0.1),]
+print(Madrynornis_mirandus_thr)
+```
+
+
+We next look at the Eudyptes clade.
+```{r}
+eudyptes_str<- "Eudyptes_chrysocome,Eudyptes_chrysolophus,Eudyptes_filholi,Eudyptes_moseleyi,Eudyptes_pachyrhynchus,Eudyptes_robustus,Eudyptes_schlegeli,Eudyptes_sclateri"
+eudyptes<- log_thr_both[grep(eudyptes_str, log_thr_both$Species),]
+print(eudyptes)
+```
+```{r}
+Marplesornis_novaezealandiae<- log_thr_both[grep("Marplesornis_novaezealandiae", log_thr_both$Species),]
+Marplesornis_novaezealandiae <- Marplesornis_novaezealandiae[which(Marplesornis_novaezealandiae$PosteriorProbSA>thr | Marplesornis_novaezealandiae$PosteriorProbSRanges>0.1),]
+Marplesornis_novaezealandiae$probDiff <- abs(Marplesornis_novaezealandiae$PosteriorProbSA-Marplesornis_novaezealandiae$PosteriorProbSRanges)
+Marplesornis_novaezealandiae_thr <- Marplesornis_novaezealandiae[which(Marplesornis_novaezealandiae$probDiff>0.1),]
+print(Marplesornis_novaezealandiae_thr)
+```
+
+
+# ```{r}
+# # this is already with bunin
+# log_extant <-  read.table("figures2/extant_clade_comp.txt", header=FALSE, sep=" ")
+# colnames(log_extant) <- c("Species", "PosteriorProbSA", "PosteriorProbSRanges",
+#                    "HeightSA", "HeightSA_HPD_l", "HeightSA_HPD_h",
+#                    "HeightSRanges", "HeightSRanges_HPD_l", "HeightSRanges_HPD_h")
+# log_extant$nSpecies <- count.fields(textConnection(log_extant$Species), sep = ",")
+# log_extant$probDiff <- abs(log_extant$PosteriorProbSA-log_extant$PosteriorProbSRanges)
+# thr <- 0.4 
+# log_extant_thr <- log_extant[which(log_extant$PosteriorProbSA>thr | log_extant$PosteriorProbSRanges>thr),]
+# log_extant_thr <- log_extant[which(log_extant$probDiff>0.1),]
+# 
+# Madrynornis_mirandus <- log_extant[grep("Madrynornis_mirandus", log_extant$Species, ignore.case = FALSE),]
+# Madrynornis_mirandus <- Madrynornis_mirandus[which(Madrynornis_mirandus$PosteriorProbSA>thr | Madrynornis_mirandus$PosteriorProbSRanges>0.1),]
+# 
+# 
+# Megadyptes_antipodes <- log_extant[grep("Megadyptes_antipodes", log_extant$Species, ignore.case = FALSE),]
+# Megadyptes_antipodes <- Megadyptes_antipodes[which(Megadyptes_antipodes$PosteriorProbSA>thr | Megadyptes_antipodes$PosteriorProbSRanges>0.1),]
+# ```
