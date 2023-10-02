@@ -429,24 +429,7 @@ p.turnover_log <- ggplot(turnover)+
 
 ggsave(plot=p.turnover_log,paste("figures/turnover_logScale", ".pdf", sep=""),width=6, height=5)
 
-hpd.test = data.frame("Parameter"=c('turnover'),
-                      "HPD coverage"=c(mean(turnover$test)))
-write.csv(hpd.test, file = paste("figures/turnover_HPD_test",".csv", sep="" ))
 
-hpd.width = data.frame("Parameter"=c('turnover'),
-                       "Average relative HPD width"=c(mean(turnover$hpd.rel.width)))
-write.csv(hpd.width, file = paste("figures/turnover_HPD_rel_width_score_",".csv", sep="" ))
-
-cv = data.frame("Parameter"=c('turnover'),
-                "Average Coefficient of Variation"=c(mean(turnover$cv)))
-write.csv(cv, file = paste("figures/turnover_CV_score",".csv", sep="" ))
-
-medians = data.frame("Parameter"=c('turnover'),
-                     "Medians"=c(mean(turnover$rel.err.meadian)))
-write.csv(medians, file = paste("figures/turnover_rel_error_median",".csv", sep="" ))
-
-means = data.frame("Parameter=c('turnover')", "Means"=c(mean(turnover$rel.err.mean)))
-write.csv(means, file = paste("figures/turnover_rel_error_mean",".csv", sep=""))
 
 
 dt_rel.err.median.turnover = data.frame(param='turnover', value=turnover$rel.err.meadian)

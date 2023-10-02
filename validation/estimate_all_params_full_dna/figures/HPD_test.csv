@@ -1,7 +1,7 @@
 "","Parameter","HPD.coverage"
-"1","diversificationRate",0.947674418604651
+"1","diversificationRate",0.953488372093023
 "2","turnover",0.941860465116279
 "3","samplingProportion",0.941860465116279
-"4","samplingAtPresentProb",0.959302325581395
-"5","mrca",0.994186046511628
+"4","samplingAtPresentProb",0.965116279069767
+"5","mrca",1
 "6","origin",0.97093023255814
