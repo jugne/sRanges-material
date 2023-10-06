@@ -1,11 +1,13 @@
 We use the following parameter priors for simualtion and inference:
 
-diversification rate ~Uniform(0.7, 0.9)
-turnover ~Uniform(0.2, 0.8)
-sampling proportion ~Uniform(0.2, 0.8)
-sampling at present ~Uniform(0.7, 1)
-origin was fixed at 4 in simulations but estimated with a Uniform(1, 1000) prior.
-We rejected simulations with trees that had <5 or >1000 nodes. The simulation was done as follows:
+- diversification rate ~Uniform(0.7, 0.9)
+- turnover ~Uniform(0.2, 0.8)
+- sampling proportion ~Uniform(0.2, 0.8)
+- sampling at present ~Uniform(0.7, 1)
+- origin was fixed at 4 in simulations but estimated with a Uniform(1, 1000) prior.
+
+
+We rejected simulations with trees that had less than 5 or more than 1000 nodes. The simulation was done as follows:
 
 1. Simulate 200 birth-death-sampling trees and associated taxonomy with FossilSim package.
 2. For species with more than 1 sampled occurence, we record the first and last occurence.
