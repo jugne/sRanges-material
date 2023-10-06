@@ -20,3 +20,11 @@ We rejected simulations with trees that had less than 5 or more than 1000 nodes.
 Then we infer the trees and associated parameters. Results are sumarrised in figures folder. 
 The HPD_test.csv is a table of 95% HPD coverage for parameters. The qq plots for every parameter show HPD coverage at different percentages.
 Ideally, you want z% coverage for z% HPD width (in other words, values in these plots should fall at x=y diagonal).
+
+### Reproducing the analysis
+
+To reproduce our analysis, you should have R (https://www.r-project.org) and Beast2 (http://www.beast2.org) installed. This is enough to reproduce simulated trees and sequences. In order to run the inference, you should install the sRanges package in BEAST2.7 (https://github.com/jugne/stratigraphic-ranges).
+
+First, run the `simulate.R` script. This should create 200 folders with `sim` and `inf` subfolders. Folder `sim` stores simulation xmls, with trees and simulated morphological and DNA sequences. Folder `inf` has the inference xml for sRanges package in BEAST2.7.  The script will also create the `true_rates.csv` file that contains the parameter values under which true tree was simulated and the true sampled tree. 
+
+Then, you can run the `inf/inference.xml` files with Beast2.7 for all 200 simulations. The results can then be summarised using the `validationPlots.R` script.
