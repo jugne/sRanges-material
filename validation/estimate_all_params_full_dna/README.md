@@ -12,7 +12,7 @@ We rejected simulations with trees that had <5 or >1000 nodes. The simulation wa
   These are start and end of stratigraphic range, associated with that species.
 3. For each occurence, we simulate morphological data with 7 states according to LewisMK substitution model. 
   Strict clock value was fixed at 0.01.
-4. Only for EXTANT occurences, we simulate DNA data with JukesCantor substitution model. Strict clock value was fixed at 0.01.
+4. For EACH occurence we simulate DNA data with JukesCantor substitution model. Strict clock value was fixed at 0.01.
 
 
 Then we infer the trees and associated parameters. Results are sumarrised in figures folder. 
