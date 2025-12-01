@@ -15,7 +15,8 @@ It records the species of the range (ancestor) and all descendants.
 It also notes the nodes and branch lengths (in time scale) that separate the ancestor and descendant species.
 ```{r}
 library(coda)
-log <-  read.table("morph_at_start/log_branch_rates/rerun/speciation_combined.log", header=TRUE, sep="\t")
+log <-  read.table("morph_at_start/penguins_inf_morph_at_start_combined.speciation.log",
+                   header=TRUE, sep="\t")
 # burnIn <- 0.1
 # log <- tail(log, -round(nrow(log)*burnIn)) # take out 10% burnin
 log<-log[,1:(ncol(log)-1)]
@@ -73,10 +74,10 @@ The next log file is obtained by running a SRangesAndSACladeSetComparator tool o
 and sRanges packages. For all clades that were found, the posterior probability of the clade, its height and HPD interval bounds for the height are recorded.
 ```{r}
 # this is already with bunin
-log <-  read.table("figures2/clade_comp.txt", header=FALSE, sep=" ")
-colnames(log) <- c("Species", "PosteriorProbSA", "PosteriorProbSRanges",
-                   "HeightSA", "HeightSA_HPD_l", "HeightSA_HPD_h",
-                   "HeightSRanges", "HeightSRanges_HPD_l", "HeightSRanges_HPD_h")
+log <-  read.table("figures/clade_comp.txt", header=FALSE, sep=" ")
+colnames(log) <- c("Species", "PosteriorProbFBD", "PosteriorProbSRanges",
+                   "HeightFBD", "HeightFBD_HPD_l", "HeightFBD_HPD_h",
+                   "HeightSRFBD", "HeightSRFBD_HPD_l", "HeightSRFBD_HPD_h")
 
 
 ```
@@ -84,26 +85,92 @@ colnames(log) <- c("Species", "PosteriorProbSA", "PosteriorProbSRanges",
 
 You can obtain the clades with very low probabilities in both sets
 ```{r}
-thr <- 0.01 
-log_thr <- log[-which(log$PosteriorProbSA<thr & log$PosteriorProbSRanges<thr),]
+thr <- 0.2 
+log_thr <- log[which(log$PosteriorProbFBD>thr & log$PosteriorProbSRanges>thr),]
 head(log_thr)
 ```
 
 You can obtain the clades that have posterior support difference greater than some threshold:
 ```{r}
-thr <- 0.15 
-log_thr <- log[which(abs(log$PosteriorProbSA-log$PosteriorProbSRanges)>thr),]
-log_thr$probDiff <- abs(log_thr$PosteriorProbSA-log_thr$PosteriorProbSRanges)
+library(stringr)
+# thr <- 0.15 
+# log_thr <- log[which(abs(log$PosteriorProbFBD-log$PosteriorProbSRanges)>thr),]
+log_thr$probDiff <- abs(log_thr$PosteriorProbFBD-log_thr$PosteriorProbSRanges)
 log_thr$nSpecies <- count.fields(textConnection(log_thr$Species), sep = ",")
+b<-lapply(log_thr$Species, function(x) str_remove_all(x, "[{}]"))
+log_thr$cladeName <- lapply(b, function(x) str_flatten(unique(sapply(unlist(strsplit(x, ',')),
+                                                                     function(y) str_split(y, "_")[[1]])[1,]), "--"))
+
+library(ggplot2)
+library(ggExtra)
+require(cowplot)
+require(forcats)
+l <- rep("", nrow(log_thr))
+l[which(log_thr$HeightFBD-log_thr$HeightSRFBD>0)]<-"\u2194"
+l<-l[order(log_thr$probDiff)]
+p<-ggplot(log_thr, aes(x = HeightFBD_HPD_l, y = fct_reorder(Species, probDiff))) +
+  geom_segment(aes(xend = HeightFBD_HPD_h, yend = fct_reorder(Species, probDiff), colour = "fbd"), alpha=0.4,  linewidth = 1, ) +
+  geom_point(aes(x = HeightFBD, shape="fbd"), size = 1) +
+  geom_segment(aes(x=HeightSRFBD_HPD_l, xend = HeightSRFBD_HPD_h, yend = fct_reorder(Species, probDiff), colour = "srfbd"), linewidth = 1, alpha=0.4) +
+  geom_point(aes(x = HeightSRFBD, shape="srfbd"), size = 1) +
+  scale_color_manual(values = c(fbd = "blue", srfbd = "red"),
+                     labels = c(fbd = "FBD", srfbd = "SRFBD"),
+                     name = "")+
+  scale_shape_manual(values = c(fbd = 4, srfbd = 3),
+                     labels = c(fbd = "FBD", srfbd = "SRFBD"),
+                     name = "")+
+  theme_bw() + xlab("Age (Ma)") + ylab("Clades") +
+  theme(plot.margin=unit(c(0.2, -0.2, 0.2, 0.2),"cm"),
+        axis.ticks.y = element_blank(), legend.direction="horizontal", legend.position = c(0.5, 0.07))  + scale_y_discrete(
+    name = "",
+    labels = l, position="right"
+  )
+require(grDevices)
+p2 <- ggplot(log_thr, aes(x = 0, y = fct_reorder(Species, probDiff))) +
+  geom_segment(aes(xend = PosteriorProbFBD, yend = fct_reorder(Species, probDiff)), linewidth = 1, alpha=0.4, colour = "blue")+
+  geom_segment(aes(x=0, xend = PosteriorProbSRanges, yend = fct_reorder(Species, probDiff)), linewidth = 1, alpha=0.4, colour = "red")+
+  theme_bw() + xlab("Posterior probability") +
+  theme(legend.position = "none",axis.text.y = element_blank(),
+        axis.title.y=element_blank(), axis.ticks.y = element_blank(), 
+        plot.margin=unit(c(0.2, 0.2, 0.2, -0.2),"cm"))
+# ggMarginal(data=log_thr, x="HeightFBD_HPD_l", y="PosteriorProbFBD", margins="y")
+p3<-plot_grid(p, p2, ncol=2, rel_widths = c(3,1))
+p3
+pdf("figures/clade_prob_thr_both_0.2.pdf")
+print(p3)
+dev.off()
+ggsave2("figures/clade_prob_thr_both_0.2.pdf", p3, width=5, height=5, device=cairo_pdf, family="Arial Unicode MS")
+log_thr <- apply(log_thr,2,as.character)
+for (i in 2:10){
+  log_thr[,i]<-round(as.numeric(log_thr[,i]),2)
+}
+log_thr <- log_thr[order(log_thr[,10], decreasing = TRUE),]
+log_thr[,4] <- paste0(as.character(log_thr[,4]), " [", as.character(log_thr[,5]),
+                      ", ", as.character(log_thr[,6]), "]")
+log_thr[,7] <- paste0(as.character(log_thr[,7]), " [", as.character(log_thr[,8]),
+                      ", ", as.character(log_thr[,9]), "]")
+log_thr <- log_thr[,-c(5,6,8,9)]
+write.csv2(log_thr, "figures/clade_prob_thr_both_0.2.csv")
 head(log_thr)
+log_thr_1 <- log[which(log$PosteriorProbFBD>=0.01 & log$PosteriorProbSRanges>=0.01),]
+mm <- mean(abs(log_thr_1$HeightFBD-log_thr_1$HeightSRFBD))
+write.csv2(mm, "figures/mean_height_diff_thr_0.01.csv")
 ```
 
 Or filter the log to only keep clades associated with probability more than some threshold
 ```{r}
 thr <- 0.1 
-log_thr_both <- log[which(log$PosteriorProbSA>thr | log$PosteriorProbSRanges>thr),]
+log_thr_both <- log[which(log$PosteriorProbFBD>thr | log$PosteriorProbSRanges>thr),]
 log_thr_both$nSpecies <- count.fields(textConnection(log_thr_both$Species), sep = ",")
 head(log_thr_both)
+```
+
+```{r}
+thr <- 0.1 
+log_thr_h <- log[which(log$PosteriorProbSA>thr | log$PosteriorProbSRanges>thr),]
+log_thr_h <- log_thr_h[which(abs(log_thr_h$HeightFBD-log_thr_h$HeightSRFBD)>thr),]
+log_thr_h$heightDiff <- abs(log_thr_h$HeightFBD-log_thr_h$HeightSRFBD)
+head(log_thr_h)
 ```
 
 Here we try to find the most probable clades of less than 15 species and involving Delphinornis gracilis
@@ -116,9 +183,12 @@ print(Delphinornis_gracilis)
 Here, we analyse clades involving Madrynornis mirandus
 ```{r}
 Madrynornis_mirandus<- log_thr_both[grep("Madrynornis_mirandus", log_thr_both$Species),]
-Madrynornis_mirandus <- Madrynornis_mirandus[which(Madrynornis_mirandus$PosteriorProbSA>thr | Madrynornis_mirandus$PosteriorProbSRanges>0.1),]
-Madrynornis_mirandus$probDiff <- abs(Madrynornis_mirandus$PosteriorProbSA-Madrynornis_mirandus$PosteriorProbSRanges)
+Madrynornis_mirandus <- Madrynornis_mirandus[which(Madrynornis_mirandus$PosteriorProbFBD>thr | Madrynornis_mirandus$PosteriorProbSRanges>0.1),]
+Madrynornis_mirandus$probDiff <- abs(Madrynornis_mirandus$PosteriorProbFBD-Madrynornis_mirandus$PosteriorProbSRanges)
 Madrynornis_mirandus_thr <- Madrynornis_mirandus[which(Madrynornis_mirandus$probDiff>0.1),]
+b<-lapply(Madrynornis_mirandus_thr$Species, function(x) str_remove_all(x, "[{}]"))
+Madrynornis_mirandus_thr$cladeName <- lapply(b, function(x) str_flatten(unique(sapply(unlist(strsplit(x, ',')),
+                                                                     function(y) str_split(y, "_")[[1]])[1,]), "--"))
 print(Madrynornis_mirandus_thr)
 ```
 

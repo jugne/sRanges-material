@@ -8,7 +8,7 @@ library(stringr)
 library(beastio)
 library(FossilSim)
 library(R.utils)
-source("~/Documents/Source/beast2.7/sRanges-material/validation/estimate_all_params_full_dna/helper.R")
+source("helper.R")
 
 ## This overrides the tree simulation function, so that too big (>1000 nodes) tree are rejected.
 ## This is done since they are too big for quick BEAST2 analysis
@@ -21,8 +21,8 @@ assignInNamespace("sim2.bd.origin", sim2.bd.origin2, ns="TreeSim")
 
 
 ## change paths if needed
-wd <- "~/Documents/Source/beast2.7/sRanges-material/validation/estimate_all_params_full_dna/"
-templates_dir <- "~/Documents/Source/beast2.7/sRanges-material/validation/estimate_all_params_full_dna/templates/"
+wd <- getwd()
+templates_dir <- paste0(wd,"/templates/")
 beast_dir <- "'/Applications/BEAST\ 2.7.1/bin/beast'"
 
 
@@ -322,7 +322,8 @@ for (i in 1:ntrees){
   writeLines(sim, con="sRanges_inference.xml")
 }
 
-save.image(file=paste0(wd, "simulation.RData"))
+dir.create(paste0(wd, "/RData"))
+save.image(file=paste0(wd, "/RData/simulation.RData"))
 
 write.csv(true_rates, paste0(wd, "true_rates.csv"))
 
