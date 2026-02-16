@@ -1,0 +1,13 @@
+<beast version='2.0' namespace='feast.fileio.logfileiterator:beast.evolution.tree:beast.core.parameter'>
+
+    <run spec="LogFileIterator">
+
+        <logFileState spec="TreeLogFileState" logFileName="canidae_rho_zero.trees">
+            <tree spec="beast.base.evolution.tree.Tree" id="tree"/>
+        </logFileState>
+
+        <logger logEvery="10000" fileName="canidae_rho_zero.length.log">
+            <log id="treestat" spec="beast.base.evolution.tree.TreeStatLogger" tree="@tree"/>
+        </logger>
+    </run>
+</beast>

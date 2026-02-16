@@ -1,0 +1,20 @@
+<beast version='2.0' namespace='beast.base.inference.parameter
+                                :beast.base.evolution.operator
+                                :feast
+                                :feast.expressions
+                                :feast.fileio.logfileiterator
+                                :sr.evolution.tree'>
+
+
+     <run spec="LogFileIterator">
+
+        <logFileState spec="TreeLogFileState" logFileName="../penguins_inf_morph_at_both.combined.trees">
+            <tree spec="sr.evolution.tree.SRTree" id="tree" nodetype="sr.evolution.tree.SRNode">
+            </tree>
+        </logFileState>
+
+        <logger fileName="penguins_inf_morph_at_both.tipAge.log" id="specLog" logEvery="33333" sanitiseHeaders="true" sort="smart">
+            <log spec="sr.evolution.tree.TipAgeLogger" tree="@tree"/>
+        </logger>
+    </run>
+</beast>
